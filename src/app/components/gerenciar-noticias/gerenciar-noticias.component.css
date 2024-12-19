@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.cadastro-noticia-container {
+  max-width: 100rem;
+  margin: 0 auto;
+  margin-top: 12rem;
+  padding: 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.8rem;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  text-align: center;
+}
+
+.cadastro-noticia-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-and-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.form-container {
+  flex: 1;
+  min-width: 30rem;
+}
+
+.news-list-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-left: 10rem;
+}
+
+.news-list-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.news-list-container li {
+  cursor: pointer;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.news-list-container li:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.news-list-container__date {
+  color: rgb(88, 88, 88);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+button {
+  width: 100%;
+  padding: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+}
+
+.form-group textarea {
+  height: 10rem;
+}
+
+button {
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.clear {
+  margin-top: 1rem;
+}
+
+.delete {
+  margin-top: 1rem;
+  background-color: red;
+  color: white;
+}

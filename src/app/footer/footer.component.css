@@ -1,0 +1,35 @@
+.footer {
+    bottom: 0;
+    display: flex;
+    background-color: white;
+    width: 100%;
+    font-size: 1rem;
+    color: #012448;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.4);
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.footer__jj,
+.footer__bws {
+    font-weight: bold;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem;
+}
+
+.footer__bws a {
+    text-decoration: none;
+    color: #0052cc;
+}
+
+.footer__jj a {
+    text-decoration: none;
+    color: #012448;
+}

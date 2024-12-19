@@ -1,0 +1,14 @@
+<article class="highlight">
+  <div *ngIf="noticia.image && noticia.image.trim() !== ''; else semImagem">
+    <img [src]="noticia.image" [alt]="noticia.headline" class="highlight__image" />
+  </div>
+  <ng-template #semImagem>
+    <span class="highlight__image">I</span>
+  </ng-template>
+  <div class="highlight__content">
+    <h3 class="highlight__headline">{{ noticia.headline }}</h3>
+    <p class="highlight__subtitle">{{ noticia.subtitle }}</p>
+    <p class="highlight__summary">{{ noticia.summary }}</p>
+    <p class="highlight__date">{{ noticia.date | date: 'dd/MM/yyyy' }}</p>
+  </div>
+</article>

@@ -1,0 +1,41 @@
+<app-adds class="main__add"></app-adds>
+<main class="main">
+
+  <section class="main__highlights">
+    <div class="main__section-title-container">
+        <h2 class="main__section-title">Destaques</h2>
+    </div>
+    <div class="main__highlights">
+      <div class="main__carousel">
+          <div class="main__carousel-container">
+              <app-thumbnail-destaque
+                  *ngFor="let news of highlights"
+                  [noticia]="news"
+                  class="main__carousel-item"
+                  (click)="goToNoticia(news.id)"> 
+              </app-thumbnail-destaque>
+          </div>
+          <button class="main__carousel-btn main__carousel-btn--prev" (click)="prevSlide()">&#10094;</button>
+          <button class="main__carousel-btn main__carousel-btn--next" (click)="nextSlide()">&#10095;</button>
+      </div>
+  </div>
+</section>
+
+
+  <div class="main__adds">
+    <app-adds></app-adds>
+    <app-adds></app-adds>
+  </div>
+  
+  <section class="main__common-news">
+    <div class="main__section-title-container">
+      <h2 class="main__section-title">Últimas Notícias</h2>
+    </div>
+    <div class="main__news-grid">
+      <a *ngFor="let news of commonNews" (click)="goToNoticia(news.id)">
+        <app-thumbnail-noticia [noticia]="news"></app-thumbnail-noticia>
+      </a>
+    </div>
+  </section>
+</main>
+<app-anuncio></app-anuncio>

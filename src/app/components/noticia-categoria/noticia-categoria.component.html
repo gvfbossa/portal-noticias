@@ -1,0 +1,22 @@
+<div class="noticia-categoria">
+    <app-adds></app-adds>
+    <div *ngIf="noticiasFiltradas.length > 0; else semNoticias">
+        
+        <div class="noticia-categoria__title-container">
+            <h2 class="noticia-categoria__title">Notícias sobre {{ getNomeCategoria() }}</h2>
+        </div>
+
+        <div class="noticia-categoria__thumbnails">
+            <a *ngFor="let noticia of noticiasFiltradas" (click)="goToNoticia(noticia.id)">
+                <app-thumbnail-destaque *ngIf="noticia.type === 'HIGHLIGHT'" [noticia]="noticia"></app-thumbnail-destaque>
+                <app-thumbnail-noticia *ngIf="noticia.type === 'COMMON'" [noticia]="noticia"></app-thumbnail-noticia>
+            </a>
+        </div>
+    </div>
+    
+    <div>
+        <ng-template class="noticia-categoria__title-container" #semNoticias>
+            <p class="noticia-categoria__title">Nenhuma notícia encontrada para a categoria {{ getNomeCategoria() }}.</p>
+        </ng-template>
+    </div>
+</div>

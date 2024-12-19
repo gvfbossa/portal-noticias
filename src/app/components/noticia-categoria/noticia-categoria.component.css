@@ -1,0 +1,25 @@
+.noticia-categoria {
+    margin-top: 12rem;
+}
+
+.noticia-categoria__title-container {
+    margin-bottom: 5rem;
+    margin-left: 2rem;
+  }
+  
+  .noticia-categoria__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #000;
+    border-left: 0.4rem solid #0052cc;
+    padding-left: 1rem;
+  }
+
+  .noticia-categoria__thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 5rem;
+    justify-content: center;
+}
