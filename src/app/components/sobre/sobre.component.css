@@ -114,3 +114,82 @@
     text-align: center;
     margin-bottom: 1rem;
 }
+
+/* Versão Mobile */
+@media (max-width: 768px) {
+  .sobre {
+      margin-top: 12rem; /* Ajusta a margem superior em telas pequenas */
+  }
+
+  .sobre__content {
+      flex-direction: column; /* Empilha os itens verticalmente */
+      gap: 3rem; /* Diminui o espaço entre os elementos */
+      justify-content: flex-start; /* Alinha os itens no topo */
+      margin: 1rem;
+  }
+
+  .sobre__main {
+      width: 100%; /* Aumenta a largura do conteúdo principal */
+      margin-left: 0; /* Remove a margem esquerda */
+      text-align: center; /* Alinha o conteúdo ao centro */
+  }
+
+  .sobre__logo-container {
+      margin-left: 0; /* Remove a margem esquerda do logo */
+      display: block; /* Garante que o logo ocupe a linha inteira */
+      margin-bottom: 2rem; /* Adiciona um espaçamento abaixo do logo */
+  }
+
+  .sobre__logo {
+      font-weight: bold;
+      display: flex;
+      flex-direction: column; /* Empilha logo e texto */
+      align-items: center; /* Centraliza logo e texto */
+  }
+
+  .sobre__logo-image {
+      height: 12rem; /* Reduz o tamanho da logo */
+      margin-bottom: 1rem; /* Adiciona espaço abaixo da logo */
+  }
+
+  .sobre__logo-text-bws {
+    font-size: 2rem;
+  }
+
+  .sobre__logo-text {
+      font-size: 2rem; /* Diminui o tamanho do texto do logo */
+      width: 60%; /* Aumenta a largura do texto */
+      text-align: center; /* Centraliza o texto */
+  }
+
+  .sobre__texto {
+      margin-left: 0; /* Remove a margem esquerda */
+      font-size: 1rem; /* Ajusta o tamanho da fonte */
+      text-align: justify; /* Alinha o texto */
+  }
+
+  .ad-banner {
+      width: 90%; /* Reduz a largura do banner */
+      padding: 1.5rem; /* Diminui o padding */
+  }
+
+  .ad-banner__title {
+      font-size: 1.5rem; /* Ajusta o tamanho da fonte do título */
+  }
+
+  .ad-banner__subtitle {
+      font-size: 1rem; /* Ajusta o tamanho da fonte do subtítulo */
+  }
+
+  .ad-banner__contact {
+      font-size: 1.2rem; /* Ajusta o tamanho da fonte do contato */
+  }
+
+  .ad-banner__icon {
+      font-size: 1.5rem; /* Ajusta o tamanho do ícone */
+  }
+
+  app-adds {
+    margin-bottom: 3rem;
+  }
+}
