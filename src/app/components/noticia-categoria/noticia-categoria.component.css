@@ -17,9 +17,110 @@
   }
 
   .noticia-categoria__thumbnails {
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     margin-bottom: 5rem;
     justify-content: center;
+}
+
+.noticia-categoria__carousel {
+  position: relative;
+  overflow: hidden;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.noticia-categoria__carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.noticia-categoria__carousel-item {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+}
+
+.noticia-categoria__carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noticia-categoria__carousel-btn--prev {
+  left: 0;
+  margin-left: 10px;
+}
+
+.noticia-categoria__carousel-btn--next {
+  right: 0;
+  margin-right: 10px;
+}
+
+.noticia-categoria__carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+  .noticia-categoria__carousel {
+    margin-bottom: 0;
+  }
+
+  .noticia-categoria__carousel-btn {
+    font-size: 0.8rem;
+    opacity: 0.3;
+  }
+
+  .noticia-categoria {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .noticia-categoria__title-container {
+    margin-bottom: 2rem;
+  }
+
+  .noticia-categoria__title {
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .noticia-categoria__thumbnails {
+    gap: 1rem;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap; /* Garante que os thumbnails quebrem para a próxima linha, se necessário */
+    align-items: center; /* Garante que os itens sejam centralizados verticalmente, caso necessário */
+    max-width: 80%; /* Garante que os thumbnails não ultrapassem a largura */
+    margin-left: 10%;
+  }
+
+  .noticia-categoria__thumbnails a {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo dentro do link */
+    align-items: center; /* Alinha o conteúdo do link verticalmente */
+  }
 }

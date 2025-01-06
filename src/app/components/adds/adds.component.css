@@ -45,3 +45,9 @@
       transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .banner {
+    font-size: 1.5rem;
+  }
+}

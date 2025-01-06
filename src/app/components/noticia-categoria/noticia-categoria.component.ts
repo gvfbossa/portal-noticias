@@ -35,8 +35,11 @@ export class NoticiaCategoriaComponent implements OnInit {
     achadosperdidos: 'Achados e Perdidos',
     anuncios: 'Anúncios',
     reclamacoes: 'Reclamações',
-    
   }
+
+  highlights: Noticia[] = []
+  currentSlide = 0;
+  interval: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +52,35 @@ export class NoticiaCategoriaComponent implements OnInit {
       this.categoria = params['type']
       this.filtrarNoticias()
     })
+
+    this.startAutoSlide();
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.highlights.length;
+    this.updateCarousel();
+  }
+
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.highlights.length) % this.highlights.length;
+    this.updateCarousel();
+  }
+
+  updateCarousel() {
+    const container = document.querySelector('.noticia-categoria__carousel-container') as HTMLElement;
+    const items = container.children;
+    const currentItem = items[this.currentSlide] as HTMLElement;
+
+    const itemWidth = currentItem.getBoundingClientRect().width;
+
+    const offset = -(this.currentSlide * itemWidth);
+    container.style.transform = `translateX(${offset}px)`;
+  }
+
+  startAutoSlide() {
+    this.interval = setInterval(() => {
+      this.nextSlide();
+    }, 5000);
   }
 
   filtrarNoticias(): void {
@@ -56,6 +88,10 @@ export class NoticiaCategoriaComponent implements OnInit {
       this.noticiasFiltradas = todasNoticias.content.filter((noticia: { category: string }) => {
         return noticia.category === this.categoria.toUpperCase()
       })
+    })
+
+    this.highlights = this.noticiasFiltradas.filter((noticia: { type: string }) => {
+      return noticia.type === 'HIGHLIGHT'
     })
   }
   

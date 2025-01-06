@@ -54,19 +54,6 @@
   gap: 1.3rem;
 }
 
-@media (max-width: 768px) {
-  .main__highlight-scroll {
-    flex-direction: column;
-  }
-
-  .main__news-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-
-
-
 .main__carousel {
   position: relative;
   overflow: hidden; /* Oculta os itens fora do contêiner */
@@ -124,4 +111,31 @@
 
 .main__carousel-btn:hover {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+  .main__carousel-btn {
+    font-size: 0.8rem;
+    opacity: 0.3;
+  }
+
+  .main__highlight-scroll {
+    flex-direction: column;
+  }
+
+  .main__adds {
+    margin-top: 0px;
+  }
+
+  .main__section-title {
+    font-size: 1.2rem;
+  }
+
+  .main__news-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .main__adds-removal {
+    display: none;
+  }
 }

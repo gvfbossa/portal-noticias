@@ -1,7 +1,7 @@
 .highlight {
     display: flex;
     align-items: center;
-    width: 98%;
+    width: 100%;
     height: 25rem;
     background-color: #fff;
     border: 0.1rem solid #ddd;
@@ -42,7 +42,7 @@
 }
 
 .highlight__headline {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #000;
     margin: 0 0 0.3rem 0;
@@ -57,11 +57,7 @@
 }
 
 .highlight__summary {
-    font-size: 1rem;
-    color: #666;
-    align-self: start;
-    text-align: justify;
-    hyphens: auto;
+    display: none;
 }
 
 .highlight__date {
@@ -69,3 +65,51 @@
     color: #999;
     margin-top: 1rem;
 }
+
+@media (max-width: 768px) {
+    .highlight {
+      display: flex;
+      flex-direction: column; /* Empilha os itens verticalmente */
+      align-items: center; /* Centraliza os itens horizontalmente */
+      height: auto; /* Altura ajustada ao conteúdo */
+      padding: 0rem; /* Margem interna */
+      padding-top: 0.5rem;
+      width: 100%;
+      margin-bottom: 0px;
+    }
+  
+    .highlight__image {
+      width: 13rem; /* Largura fixa */
+      height: 13rem; /* Altura fixa */
+      margin: 0 auto 1rem; /* Centraliza e adiciona espaçamento inferior */
+      border-radius: 0.5rem; /* Mantém o arredondamento */
+      background-color: #e0e0e0; /* Cor de fundo para teste */
+      display: flex; /* Centraliza conteúdo interno se necessário */
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .highlight__headline {
+      font-size: 1.3rem; /* Tamanho maior para o título */
+      font-weight: bold;
+      text-align: center; /* Centraliza o texto */
+      margin: 0.5rem 0; /* Margem superior e inferior */
+      color: #000; /* Cor para contraste */
+    }
+  
+    .highlight__subtitle {
+      font-size: 0.8rem; /* Tamanho menor para subtítulo */
+      text-align: center; /* Centraliza o texto */
+      margin: 0.5rem 0; /* Margem superior e inferior */
+      color: #4d4d4d;
+    }
+  
+    .highlight__date {
+      font-size: 0.7em; /* Tamanho menor para a data */
+      text-align: center; /* Centraliza o texto */
+      margin-top: 0.5rem; /* Margem superior */
+      color: #999;
+      align-self: center;
+    }
+  }
+  
