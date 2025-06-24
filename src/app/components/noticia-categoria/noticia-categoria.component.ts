@@ -26,15 +26,17 @@ export class NoticiaCategoriaComponent implements OnInit {
   noticiasFiltradas: Noticia[] = []
   categoriaFormatada: { [key: string]: string } = {
     geral: 'Geral',
-    cultura: 'Cultura',
-    politica: 'Política',
-    policial: 'Policial',
-    esportes: 'Esportes',
-    agenda: 'Agenda',
-    emprego: 'Emprego',
-    achadosperdidos: 'Achados e Perdidos',
-    anuncios: 'Anúncios',
-    reclamacoes: 'Reclamações',
+    mogi: 'Mogi das Cruzes',
+    suzano: 'Suzano',
+    poa: 'Poá',
+    itaqua: 'Itaquaquecetuba',
+    aruja: 'Arujá',
+    guararema: 'Guararema',
+    biritiba: 'Biritiba Mirim',
+    emprego: 'Empregos',
+    achadosperdidos: 'Achados E Perdidos',
+    anuncios: 'Produtos e Serviços',
+    reclamacoes: 'Reclamações'
   }
 
   highlights: Noticia[] = []

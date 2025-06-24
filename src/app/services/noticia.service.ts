@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PagedResponse } from '../paged-response.model';
 import { Noticia } from '../noticia.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,24 @@ export class NoticiaService {
 
   noticias = [];
   page: number = 0
-  size: number = 16
+  size: number = 24
+  apiUrl = 'http://localhost:8080/api/noticias/todas';
 
-  noticiasArray = {
+  constructor(private http: HttpClient) {}
+
+  noticiasArrayMock = {
     "noticias": [
+      {
+        "id": 0,
+        "type": "HIGHLIGHT",
+        "category": "GERAL",
+        "headline": "Novidade! Um Novo Site de Notícias para a Região do Alto Tietê!",
+        "subtitle": "Neste novo Portal você encontrará tudo que precisa para se manter bem informado na Região.",
+        "summary": "Descubra como um site, um sistema e um app podem transformar sua empresa com a ajuda da Bossa Web Solutions, criando soluções digitais para um mundo cada vez mais conectado.",
+        "image": "assets/images/mogi-em-alerta-logo.png",
+        "fullText": "No mundo atual, ter uma **Identidade Digital** é essencial para empresas de qualquer segmento. Um site bem desenvolvido é a porta de entrada para clientes, parceiros e investidores, transmitindo profissionalismo, credibilidade e reforçando sua marca no mercado. A **Bossa Web Solutions** cria sites que não apenas informam, mas também engajam e conectam sua empresa ao público-alvo.\n\nAlém disso, sistemas personalizados são a chave para transformar o **Complexo em Simplicidade**. Automação de processos, gestão eficiente e acessibilidade são pilares que um sistema bem planejado oferece. Na **Bossa Web Solutions**, acreditamos que a tecnologia deve simplificar o dia a dia da sua empresa, permitindo que você foque no que realmente importa: crescer e inovar.\n\nPor fim, um aplicativo representa uma **Solução personalizada na palma de sua mão**. Ele conecta seus serviços diretamente ao cliente, criando uma experiência prática, moderna e acessível a qualquer momento. Seja para fidelizar seu público ou facilitar interações, a **Bossa Web Solutions** está pronta para desenvolver o app ideal que irá diferenciar sua marca no mercado.",
+        "date": "2024-12-19T14:00:00Z"
+      },
       {
         "id": 1,
         "type": "HIGHLIGHT",
@@ -213,29 +228,33 @@ export class NoticiaService {
         "date": "2024-12-15T11:00:00Z"
       }
     ]
-  };  
+  };
 
-  getNoticias(): Observable<PagedResponse<Noticia>> {
+  getNoticiasMock(): Observable<PagedResponse<Noticia>> {
     const pagedResponse: PagedResponse<Noticia> = {
-      content: this.noticiasArray.noticias.map((item: any) => ({
+      content: this.noticiasArrayMock.noticias.map((item: any) => ({
         id: item.id,
         type: item.type,
         category: item.category,
         headline: item.headline,
         subtitle: item.subtitle,
         summary: item.summary,
-        image: item.image,
+        imagePath: item.image,
         fullText: item.fullText,
         date: new Date(item.date)
       })),
-      totalElements: this.noticiasArray.noticias.length,
-      totalPages: Math.ceil(this.noticiasArray.noticias.length / this.size),
+      totalElements: this.noticiasArrayMock.noticias.length,
+      totalPages: Math.ceil(this.noticiasArrayMock.noticias.length / this.size),
       number: this.page,
       size: this.size,
       last: false
     };
 
     return of(pagedResponse);
+  }
+
+  getNoticias(page: number = 0, size: number = 24): Observable<PagedResponse<Noticia>> {
+    return this.http.get<PagedResponse<Noticia>>(`${this.apiUrl}?page=${page}&size=${size}`);
   }
 
 }

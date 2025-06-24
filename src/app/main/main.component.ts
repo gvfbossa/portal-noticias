@@ -18,7 +18,7 @@ import { AnuncioComponent } from "../components/anuncio/anunucio.component";
     ThumbnailDestaqueComponent,
     ThumbnailNoticiaComponent,
     AddsComponent,
-    AnuncioComponent
+    AnuncioComponent,
 ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'

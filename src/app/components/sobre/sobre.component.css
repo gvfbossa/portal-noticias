@@ -1,5 +1,5 @@
 .sobre {
-    margin-top: 15rem;
+    margin-top: 2rem;
 }
 
 .sobre__content {
@@ -51,6 +51,7 @@
   }
 
 .sobre__texto {
+    text-indent: 4rem;
     margin-top: 2rem;
     margin-left: 4rem;
     font-size: 1.3rem;
@@ -58,67 +59,14 @@
     hyphens: auto;
     color: black;
     text-align: left;
-    width: 100%;
+    width: 90%;
     text-align: justify;
-}
-
-.ad-banner {
-    width: 30rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    color: #333333;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    font-family: 'Courier Prime', monospace;
-    margin: 2rem auto;
-    border: 2px solid #e0e0e0;
-}
-
-.ad-banner__title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #d32f2f; /* Vermelho para o título */
-    text-transform: uppercase;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.ad-banner__subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    color: #4f4f4f; /* Cor neutra */
-}
-
-.ad-banner__contact {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #1976d2; /* Azul escuro */
-}
-
-.ad-banner__icon {
-    font-size: 2rem;
-    color: green;
-}
-
-.ad-banner__phone {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.sobre__adds {
-    margin-top: 2rem;
-    text-align: center;
-    margin-bottom: 1rem;
 }
 
 /* Versão Mobile */
 @media (max-width: 768px) {
   .sobre {
-      margin-top: 12rem; /* Ajusta a margem superior em telas pequenas */
+      margin-top: 0rem; /* Ajusta a margem superior em telas pequenas */
   }
 
   .sobre__content {
@@ -166,30 +114,5 @@
       margin-left: 0; /* Remove a margem esquerda */
       font-size: 1rem; /* Ajusta o tamanho da fonte */
       text-align: justify; /* Alinha o texto */
-  }
-
-  .ad-banner {
-      width: 90%; /* Reduz a largura do banner */
-      padding: 1.5rem; /* Diminui o padding */
-  }
-
-  .ad-banner__title {
-      font-size: 1.5rem; /* Ajusta o tamanho da fonte do título */
-  }
-
-  .ad-banner__subtitle {
-      font-size: 1rem; /* Ajusta o tamanho da fonte do subtítulo */
-  }
-
-  .ad-banner__contact {
-      font-size: 1.2rem; /* Ajusta o tamanho da fonte do contato */
-  }
-
-  .ad-banner__icon {
-      font-size: 1.5rem; /* Ajusta o tamanho do ícone */
-  }
-
-  app-adds {
-    margin-bottom: 3rem;
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
+import { AddBannerComponent } from './components/add-banner/add-banner.component';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,12 @@ import { FooterComponent } from "./footer/footer.component";
   imports: [
     RouterOutlet,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AddBannerComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'jornal-de-jundiapeba-frontend';
+  title = 'mogi-em-alerta-frontend';
 }

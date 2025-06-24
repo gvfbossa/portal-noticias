@@ -1,7 +1,7 @@
 <div class="noticia" *ngIf="noticia; else loading">
   <!-- Imagem da notícia -->
-  <div *ngIf="noticia.image && noticia.image.trim() !== ''; else semImagem">
-    <img [src]="noticia.image" [alt]="noticia.headline" class="noticia__image" />
+  <div *ngIf="noticia.imagePath && noticia.imagePath.trim() !== ''; else semImagem">
+    <img [src]="noticia.imagePath" [alt]="noticia.headline" class="noticia__image" />
   </div>
   <ng-template #semImagem>
     <span class="noticia__image">I</span>
@@ -15,7 +15,7 @@
   </div>
 
   <div class="noticia__add">
-    <app-adds></app-adds>
+    <app-adds adPosition="NEWS_RIGHT"></app-adds>
   </div>
 </div>
 

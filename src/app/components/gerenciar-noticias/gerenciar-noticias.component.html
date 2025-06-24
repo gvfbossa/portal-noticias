@@ -8,8 +8,8 @@
         <div class="form-group">
           <label for="type">Tipo</label>
           <select id="type" [(ngModel)]="noticia.type" name="type" required>
-            <option *ngFor="let type of types" [value]="type">
-              {{ type }}
+            <option *ngFor="let type of types" [value]="type.value">
+              {{ type.name }}
             </option>
           </select>
         </div>
@@ -17,8 +17,8 @@
         <div class="form-group">
           <label for="category">Categoria</label>
           <select id="category" [(ngModel)]="noticia.category" name="category" required>
-            <option *ngFor="let categoria of categorias" [value]="categoria">
-              {{ categoria }}
+            <option *ngFor="let categoria of categorias" [value]="categoria.value">
+              {{ categoria.name }}
             </option>
           </select>
         </div>
@@ -70,5 +70,74 @@
         </li>
       </ul>
     </div>
+  </div>
+</div>
+
+<div class="cadastro-noticia-container">
+  <h1>Gerenciar Anúncios</h1>
+  <div class="form-and-list">
+
+    <!-- Formulário -->
+    <div class="form-container">
+      <form (ngSubmit)="onSubmitAnuncio()" #anuncioForm="ngForm">
+        <h2>Cadastrar Anúncio</h2>
+
+        <div class="form-group">
+          <label for="url">Link do Anúncio</label>
+          <input type="text" id="url" [(ngModel)]="anuncio.url" name="url" required />
+        </div>
+
+        <div class="form-group">
+          <label for="position">Posição do Anúncio</label>
+          <select id="position" [(ngModel)]="anuncio.position" name="position" required>
+            <option *ngFor="let pos of adPositions" [value]="pos">
+              {{ getAdPositionLabel(pos) }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="dataExpiracao">Data de Expiração</label>
+          <input type="date" id="dataExpiracao" [(ngModel)]="anuncio.dataExpiracao" name="dataExpiracao" required />
+        </div>
+
+        <div class="form-group">
+          <label for="imagemAnuncio">Imagem do Anúncio</label>
+          <input type="file" id="imagemAnuncio" (change)="onAnuncioImageChange($event)" name="imagemAnuncio" required />
+        </div>
+
+        <button type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Enviando...' : 'Cadastrar Anúncio' }}
+        </button>
+      </form>
+    </div>
+
+    <div class="news-list-container">
+  <h2>Anúncios Cadastrados</h2>
+  <ul class="ad-list">
+    <li *ngFor="let anuncio of anuncios" class="ad-item">
+      <div class="ad-item__info">
+        <div class="ad-item__position">
+          <strong>{{ getAdPositionLabel(anuncio.position) }}</strong>
+        </div>
+        <div class="ad-item__url">
+          <a [href]="anuncio.url" target="_blank">{{ anuncio.url }}</a>
+        </div>
+        <div class="ad-item__date">
+          Expira em {{ anuncio.dataExpiracao | date: 'dd/MM/yyyy' }}
+        </div>
+      </div>
+      <div class="ad-item__actions">
+        <button (click)="onDeleteAnuncio(anuncio.id)" class="delete-anuncio">Apagar</button>
+      </div>
+    </li>
+  </ul>
+
+    <span class="anuncios__vazio" *ngIf="anuncios.length === 0">
+      Não há anúncios cadastrados
+    </span>
+  </div>
+
+
   </div>
 </div>

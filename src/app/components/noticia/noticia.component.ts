@@ -40,6 +40,7 @@ export class NoticiaComponent implements OnInit {
         this.noticia = this.findNoticiaById(id)
         console.log("Notícia encontrada pela ID da rota: ", this.noticia)
       }
+
     }
 
     if (!this.noticia) {
@@ -49,6 +50,7 @@ export class NoticiaComponent implements OnInit {
     if (this.noticia?.fullText) {
       this.fullTextProcessed = this.sanitizeFullText(this.noticia.fullText);
     }
+    console.log("NOTICIA: ", this.noticia)
   }
 
   findNoticiaById(id: string | null): any {

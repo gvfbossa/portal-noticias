@@ -7,15 +7,17 @@
 .cadastro-noticia-container {
   max-width: 100rem;
   margin: 0 auto;
-  margin-top: 12rem;
+  margin-top: 1rem;
   padding: 2rem;
   border: 0.1rem solid #ccc;
   border-radius: 0.8rem;
   background-color: #f9f9f9;
+  margin-bottom: 4rem;
 }
 
 h1 {
   text-align: center;
+  color: #007bff;
 }
 
 .cadastro-noticia-container h2 {
@@ -111,4 +113,68 @@ button:disabled {
   margin-top: 1rem;
   background-color: red;
   color: white;
+}
+
+.ad-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ad-item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.05);
+}
+
+.ad-item__info {
+  flex: 1 1 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ad-item__position strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.ad-item__url a {
+  color: #007bff;
+  word-break: break-word;
+  text-decoration: underline;
+}
+
+.ad-item__date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.ad-item__actions {
+  flex: 1 1 25%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.delete-anuncio {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.anuncios__vazio {
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  color: #777;
 }

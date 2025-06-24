@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { Noticia } from '../../noticia.model'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NgForm } from '@angular/forms'
 import { PagedResponse } from '../../paged-response.model'
 import { Router } from '@angular/router'
+import { Anuncio } from '../../../models/anuncio.model'
+import { AdPositionLabels, AnuncioService } from '../../services/anuncio.service'
 
 @Component({
   selector: 'app-gerenciar-noticias',
@@ -27,14 +29,26 @@ export class GerenciarNoticiasComponent implements OnInit {
   types: any
   noticias: Noticia[] = []
 
+  anuncios: any[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  anuncio: Anuncio = {
+    url: '',
+    imagem: '',
+    position: 'MAIN_TOP',
+    dataExpiracao: ''
+  };
+
+  adPositions: string[] = [];
+
+
+  constructor(private http: HttpClient, private router: Router, private anuncioService: AnuncioService) {}
 
   ngOnInit(): void {
     const authHeader = localStorage.getItem('authHeader')
     if (!authHeader) {
       alert('Por favor, faça login primeiro.')
       this.router.navigate(['/login'])
+      return
     }
 
   this.http.get(`${this.apiBaseUrl}/api/categorias`).subscribe(
@@ -58,6 +72,85 @@ export class GerenciarNoticiasComponent implements OnInit {
   )
 
   this.loadNoticias()
+  this.loadAnuncios()
+
+  const headers = new HttpHeaders({
+    Authorization: authHeader
+  });
+
+  this.anuncioService.getAdPositions(headers).subscribe(
+    (positions) => this.adPositions = positions,
+    (error) => console.error('Erro ao carregar posições de anúncio', error)
+  );
+}
+
+onDeleteAnuncio(id: number): void {
+  if (confirm('Tem certeza que deseja apagar este anúncio?')) {
+    const authHeader = localStorage.getItem('authHeader');
+    const headers = new HttpHeaders({ Authorization: authHeader || '' });
+
+    this.anuncioService.deletar(id, headers).subscribe(
+      () => {
+        alert('Anúncio deletado com sucesso!');
+        this.loadAnuncios();
+      },
+      (error) => {
+        console.error('Erro ao deletar anúncio:', error);
+        alert('Erro ao apagar o anúncio.');
+      }
+    );
+  }
+}
+
+loadAnuncios(): void {
+  const authHeader = localStorage.getItem('authHeader');
+  const headers = new HttpHeaders({ Authorization: authHeader || '' });
+
+  this.anuncioService.getAll(headers).subscribe(
+    (response) => this.anuncios = response,
+    (error) => console.error('Erro ao carregar anúncios:', error)
+  );
+
+  if (this.anuncios.length === 0) {
+    console.log("Não há anúncios cadastrados")
+  }
+}
+
+getAdPositionLabel(position: string): string {
+  return AdPositionLabels[position] || position;
+}
+
+onAnuncioImageChange(event: any): void {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    this.anuncio.imagem = file;
+  } else {
+    alert('Selecione uma imagem válida.');
+    event.target.value = '';
+  }
+}
+
+onSubmitAnuncio(): void {
+  if (!this.anuncio.url || !this.anuncio.position || !this.anuncio.dataExpiracao || !this.anuncio.imagem) {
+    alert('Preencha todos os campos do anúncio.');
+    return;
+  }
+
+  this.isSubmitting = true;
+
+  this.anuncioService.criar(this.anuncio).subscribe(
+    (response) => {
+      alert('Anúncio cadastrado com sucesso!');
+      this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' };
+      this.isSubmitting = false;
+      this.loadAnuncios();
+    },
+    (error) => {
+      console.error('Erro ao cadastrar anúncio:', error);
+      alert('Erro ao cadastrar anúncio.');
+      this.isSubmitting = false;
+    }
+  );
 }
 
 loadNoticias(page: number = 0, size: number = 10): void {
@@ -90,14 +183,11 @@ editNoticia(noticia: Noticia): void {
 onDelete(): void {
   if (confirm('Tem certeza que deseja apagar esta notícia?')) {
     this.isSubmitting = true
-
-    const username = 'admin'
-    const password = 'password'
     const authHeader = localStorage.getItem('authHeader')
 
-    const headers = { Authorization: 'Basic ' + authHeader }
+    const headers = { Authorization: authHeader !== null ? authHeader : '' }
 
-    this.http.delete(`${this.apiBaseUrl}/api/noticias/${this.noticia.id}`, { headers }).subscribe(
+    this.http.delete(`${this.apiBaseUrl}/api/noticias/cadastro/${this.noticia.id}`, { headers }).subscribe(
       (response: any) => {
         alert('Notícia apagada com sucesso!')
         this.loadNoticias()
@@ -122,7 +212,7 @@ onClear() {
   onImageChange(event: any): void {
     const file = event.target.files[0]
     if (file && file.type.startsWith('image/')) {
-      this.noticia.image = file
+      this.noticia.imagePath = file
     } else {
       alert('Por favor, selecione um arquivo de imagem válido.')
       event.target.value = ''
@@ -143,8 +233,8 @@ onClear() {
     formData.append('subtitle', this.noticia.subtitle)
     formData.append('summary', this.noticia.summary)
     formData.append('fullText', this.noticia.fullText)
-    if (this.noticia.image) {
-      formData.append('image', this.noticia.image)
+    if (this.noticia.imagePath) {
+      formData.append('image', this.noticia.imagePath)
     }
   
     const requestUrl = this.noticia.id 

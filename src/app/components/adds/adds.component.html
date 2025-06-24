@@ -1,5 +1,3 @@
-<div class="adds">
-    <div class="banner">
-        <p>Aumente seus Lucros! Venda este espaço em seu site para anunciantes!</p>
-    </div>    
-</div>
+<a *ngIf="adImage" [href]="adLink" target="_blank" rel="noopener noreferrer">
+  <img [src]="adImage" alt="" class="adds__image">
+</a>

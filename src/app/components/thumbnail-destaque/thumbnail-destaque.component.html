@@ -1,6 +1,6 @@
 <article class="highlight">
-  <div *ngIf="noticia.image && noticia.image.trim() !== ''; else semImagem">
-    <img [src]="noticia.image" [alt]="noticia.headline" class="highlight__image" />
+  <div *ngIf="noticia.imagePath && noticia.imagePath.trim() !== ''; else semImagem">
+    <img [src]="noticia.imagePath" [alt]="noticia.headline" class="highlight__image" />
   </div>
   <ng-template #semImagem>
     <span class="highlight__image">I</span>

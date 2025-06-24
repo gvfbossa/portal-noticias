@@ -10,6 +10,7 @@
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   opacity: 1;
   background-color: white;
+  max-height: 4rem;
 }
 
 .header__logo-container {
@@ -24,9 +25,11 @@
 }
 
 .header__logo-image {
+  margin: 0 auto;
   background-color: #fff;
-  height: 7rem;
+  height: 6rem;
   width: auto;
+  margin-top: 0px;
 }
 
 .header__logo-text {
@@ -67,7 +70,7 @@
 .header__datetime {
   margin-bottom: 0.5rem;
   font-size: 1rem;
-  color: #012448;
+  color: #0052cc;
 }
 
 .header__search-container {
@@ -89,7 +92,7 @@
 .material-icons {
   cursor: pointer;
   font-size: 2rem;
-  color: #012448;
+  color: #0052cc;
   margin-left: 0.5rem;
 }
 
@@ -138,14 +141,14 @@
   font-size: 1.1rem;
   cursor: pointer;
   text-decoration: none;
-  color: #012448;
+  color: #0052cc;
 }
 
 .header__category {
   font-size: 1.1rem;
   cursor: pointer;
   position: relative;
-  color: #012448;
+  color: #0052cc;
 }
 
 .header__category-pipe {
@@ -153,12 +156,12 @@
 }
 
 .header__category-link:hover {
-  color: gray;
+  color: #012448;
 }
 
 a {
   text-decoration: none;
-  color: #012448;
+  color: #0052cc;
 }
 
 .header__subcategory-list {
@@ -174,11 +177,12 @@ a {
   margin: 0;
   list-style: none;
   opacity: 0;
+  min-width: 12rem;
 }
 
 .header__subcategory-item {
   padding: 1rem;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -194,7 +198,7 @@ a {
 .header__menu-icon {
   cursor: pointer;
   font-size: 2rem;
-  color: #012448;
+  color: #0052cc;
   margin-left: 1rem;
 }
 
@@ -235,7 +239,7 @@ a {
 
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     padding: 0.5rem;
   }
@@ -279,14 +283,14 @@ a {
   }
 
   .header__datetime {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-left: 0.5rem;
     margin-bottom: 0;
+    width: 77%;
   }
 
   .header__search-container {
-    width: 100%;
-    margin-top: 0.5rem;
+    width: 90%;
     display: flex;
     align-items: center;
   }
@@ -294,6 +298,7 @@ a {
   .header__search {
     width: 100%;
     margin-right: 0.5rem;
+    height: 1.2rem;
   }
 
   .header__menu-icon {

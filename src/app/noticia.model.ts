@@ -5,7 +5,7 @@ export class Noticia {
     headline: string = '';
     subtitle: string = '';
     summary: string = '';
-    image: string = '';
+    imagePath: string = '';
     fullText: string = '';
     date: Date = new Date();
   }

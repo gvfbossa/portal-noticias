@@ -1,0 +1,74 @@
+a {
+    text-decoration: none;
+    color: #1976d2;
+}
+
+.ad-banner {
+    padding: 1rem;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    color: #333333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    margin: 2rem auto;
+    margin-top: 6rem;
+    border: 2px solid #e0e0e0;
+}
+
+.ad-banner__title {
+    margin-top: 0rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d32f2f; /* Vermelho para o título */
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ad-banner__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #4f4f4f; /* Cor neutra */
+}
+
+.ad-banner__contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.ad-banner__icon {
+    font-size: 2rem;
+    color: green;
+}
+
+.ad-banner__phone {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .ad-banner {
+      padding: 1rem;
+      margin-top: 4rem;
+  }
+
+  .ad-banner__title {
+      font-size: 1.2rem;
+  }
+
+  .ad-banner__subtitle {
+      font-size: 0.8rem; /* Ajusta o tamanho da fonte do subtítulo */
+  }
+
+  .ad-banner__contact {
+      font-size: 1rem; /* Ajusta o tamanho da fonte do contato */
+  }
+
+  .ad-banner__icon {
+      font-size: 1rem; /* Ajusta o tamanho do ícone */
+  }
+}
