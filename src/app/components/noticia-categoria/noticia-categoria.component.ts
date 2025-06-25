@@ -90,10 +90,9 @@ export class NoticiaCategoriaComponent implements OnInit {
       this.noticiasFiltradas = todasNoticias.content.filter((noticia: { category: string }) => {
         return noticia.category === this.categoria.toUpperCase()
       })
-    })
-
-    this.highlights = this.noticiasFiltradas.filter((noticia: { type: string }) => {
-      return noticia.type === 'HIGHLIGHT'
+      this.highlights = this.noticiasFiltradas.filter((noticia: { type: string }) => {
+        return noticia.type === 'HIGHLIGHT'
+      })
     })
   }
   
