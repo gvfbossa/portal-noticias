@@ -13,7 +13,7 @@ export class NoticiaService {
   noticias = [];
   page: number = 0
   size: number = 24
-  apiUrl = `${environment.apiBaseUrl}/api/anuncios`;
+  apiUrl = `${environment.apiBaseUrl}/api/noticias/todas`;
 
   constructor(private http: HttpClient) {}
 
