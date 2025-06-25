@@ -34,6 +34,10 @@
         color: #012448;
     }
 
+    .footer__jj a:hover {
+        cursor: pointer;
+    }
+
     @media (max-width: 768px) {
         .footer__container {
             display: block;
