@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Anuncio, AdPosition } from '../../models/anuncio.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnuncioService {
 
-  private baseApi = "http://localhost:8080"
+  private baseApi = `${environment.apiBaseUrl}`
   private apiUrl = '/api/anuncios';
 
   constructor(private http: HttpClient) {}

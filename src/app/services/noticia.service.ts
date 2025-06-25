@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { PagedResponse } from '../paged-response.model';
 import { Noticia } from '../noticia.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class NoticiaService {
   noticias = [];
   page: number = 0
   size: number = 24
-  apiUrl = 'http://localhost:8080/api/noticias/todas';
+  apiUrl = `${environment.apiBaseUrl}/api/anuncios`;
 
   constructor(private http: HttpClient) {}
 
