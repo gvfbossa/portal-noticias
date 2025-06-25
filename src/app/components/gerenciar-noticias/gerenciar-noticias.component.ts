@@ -8,6 +8,7 @@ import { PagedResponse } from '../../paged-response.model'
 import { Router } from '@angular/router'
 import { Anuncio } from '../../../models/anuncio.model'
 import { AdPositionLabels, AnuncioService } from '../../services/anuncio.service'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-gerenciar-noticias',
@@ -21,7 +22,7 @@ import { AdPositionLabels, AnuncioService } from '../../services/anuncio.service
 })
 export class GerenciarNoticiasComponent implements OnInit {
   @ViewChild('noticiaForm') noticiaForm!: NgForm
-  apiBaseUrl: string = 'http://localhost:8080'
+  apiBaseUrl: string = environment.apiBaseUrl
   noticia: Noticia = new Noticia()
   imageUrl: string = ''
   isSubmitting = false
