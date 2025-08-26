@@ -26,15 +26,12 @@ export class NoticiaCategoriaComponent implements OnInit {
   noticiasFiltradas: Noticia[] = []
   categoriaFormatada: { [key: string]: string } = {
     geral: 'Geral',
-    mogi: 'Mogi das Cruzes',
-    suzano: 'Suzano',
-    poa: 'Poá',
-    itaqua: 'Itaquaquecetuba',
-    aruja: 'Arujá',
-    guararema: 'Guararema',
-    biritiba: 'Biritiba Mirim',
+    politica: 'Política',
+    policial: 'Policial',
+    esportes: 'Esportes',
+    cultura: 'Cultura',
     emprego: 'Empregos',
-    achadosperdidos: 'Achados E Perdidos',
+    achadosperdidos: 'Achados e Perdidos',
     anuncios: 'Produtos e Serviços',
     reclamacoes: 'Reclamações'
   }
@@ -86,7 +83,7 @@ export class NoticiaCategoriaComponent implements OnInit {
   }
 
   filtrarNoticias(): void {
-    this.noticiaService.getNoticias().subscribe(todasNoticias => {
+    this.noticiaService.getNoticiasMock().subscribe(todasNoticias => {
       this.noticiasFiltradas = todasNoticias.content.filter((noticia: { category: string }) => {
         return noticia.category === this.categoria.toUpperCase()
       })

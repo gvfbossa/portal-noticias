@@ -21,6 +21,7 @@ export class LoginComponent {
   password: string = ''
   isSubmitting = false
   errorMessage: string = ''
+  portfolio = true
 
   constructor(private authService: AuthService, private router: Router) {}
 

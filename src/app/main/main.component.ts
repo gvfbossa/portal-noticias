@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
   constructor(private router: Router, private noticiaService: NoticiaService) {}
 
   ngOnInit(): void {
-    this.noticiaService.getNoticias().subscribe({
+    this.noticiaService.getNoticiasMock().subscribe({
       next: (response) => {
         const noticias = response.content
   

@@ -23,15 +23,26 @@ export class NoticiaService {
         "id": 0,
         "type": "HIGHLIGHT",
         "category": "GERAL",
-        "headline": "Novidade! Um Novo Site de Notícias para a Região do Alto Tietê!",
-        "subtitle": "Neste novo Portal você encontrará tudo que precisa para se manter bem informado na Região.",
-        "summary": "Descubra como um site, um sistema e um app podem transformar sua empresa com a ajuda da Bossa Web Solutions, criando soluções digitais para um mundo cada vez mais conectado.",
-        "image": "assets/images/mogi-em-alerta-logo.png",
-        "fullText": "No mundo atual, ter uma **Identidade Digital** é essencial para empresas de qualquer segmento. Um site bem desenvolvido é a porta de entrada para clientes, parceiros e investidores, transmitindo profissionalismo, credibilidade e reforçando sua marca no mercado. A **Bossa Web Solutions** cria sites que não apenas informam, mas também engajam e conectam sua empresa ao público-alvo.\n\nAlém disso, sistemas personalizados são a chave para transformar o **Complexo em Simplicidade**. Automação de processos, gestão eficiente e acessibilidade são pilares que um sistema bem planejado oferece. Na **Bossa Web Solutions**, acreditamos que a tecnologia deve simplificar o dia a dia da sua empresa, permitindo que você foque no que realmente importa: crescer e inovar.\n\nPor fim, um aplicativo representa uma **Solução personalizada na palma de sua mão**. Ele conecta seus serviços diretamente ao cliente, criando uma experiência prática, moderna e acessível a qualquer momento. Seja para fidelizar seu público ou facilitar interações, a **Bossa Web Solutions** está pronta para desenvolver o app ideal que irá diferenciar sua marca no mercado.",
+        "headline": "Como publicar uma Notícia ou Anúncio em seu site?",
+        "subtitle": "Nesta matéria você irá descobrir como publicar notícias e anúncios em seu novo Portal!",
+        "summary": "Descubra como publicar notícias e anúncios personalizados em seu novo Portal, utilizando a tecnologia Bossa Web Solutions!",
+        "image": "assets/images/bws_logo.png",
+        "fullText": "Após fazer **login** de administrador em seu portal, você poderá publicar suas notícias personalizadas e os anúncios vendidos! A Bossa Web Solutions criou uma solução prática para você, chamada **Área de Gerenciamento**! Confira o passo a passo para acessá-la: \n\n**1-** Clique no **rodapé** da página em **Portal de Notícias** (Você será redirecionado para a **página de login**. \n**2-** Efetue login e senha com as credencias fornecidas (para este portfólio são: **login: admin**, **senha: admin123**). \n**3-** Na seção de **Gerenciamento**, você poderá publicar suas notícias e anúncios vendidos de acordo com suas preferencias. \n\n**Bossa Web Solutions, Transforme o complexo em Simplicidade!**",
         "date": "2024-12-19T14:00:00Z"
       },
       {
         "id": 1,
+        "type": "HIGHLIGHT",
+        "category": "GERAL",
+        "headline": "Novidade! Um Novo Site de Notícias para você!",
+        "subtitle": "Neste novo Portal você encontrará tudo que precisa para se manter bem informado na Região.",
+        "summary": "Descubra como um site, um sistema e um app podem transformar sua empresa com a ajuda da Bossa Web Solutions, criando soluções digitais para um mundo cada vez mais conectado.",
+        "image": "assets/images/bws_logo.png",
+        "fullText": "No mundo atual, ter uma **Identidade Digital** é essencial para empresas de qualquer segmento. Um site bem desenvolvido é a porta de entrada para clientes, parceiros e investidores, transmitindo profissionalismo, credibilidade e reforçando sua marca no mercado. A **Bossa Web Solutions** cria sites que não apenas informam, mas também engajam e conectam sua empresa ao público-alvo.\n\nAlém disso, sistemas personalizados são a chave para transformar o **Complexo em Simplicidade**. Automação de processos, gestão eficiente e acessibilidade são pilares que um sistema bem planejado oferece. Na **Bossa Web Solutions**, acreditamos que a tecnologia deve simplificar o dia a dia da sua empresa, permitindo que você foque no que realmente importa: crescer e inovar.\n\nPor fim, um aplicativo representa uma **Solução personalizada na palma de sua mão**. Ele conecta seus serviços diretamente ao cliente, criando uma experiência prática, moderna e acessível a qualquer momento. Seja para fidelizar seu público ou facilitar interações, a **Bossa Web Solutions** está pronta para desenvolver o app ideal que irá diferenciar sua marca no mercado.",
+        "date": "2024-12-19T14:00:00Z"
+      },
+      {
+        "id": 2,
         "type": "HIGHLIGHT",
         "category": "GERAL",
         "headline": "Novidades do Mundo da Tecnologia",
@@ -42,7 +53,7 @@ export class NoticiaService {
         "date": "2024-12-19T14:00:00Z"
       },
       {
-        "id": 2,
+        "id": 3,
         "type": "HIGHLIGHT",
         "category": "GERAL",
         "headline": "Identidade Digital: Tenha seu site hoje mesmo",
@@ -53,7 +64,7 @@ export class NoticiaService {
         "date": "2024-12-19T14:00:00Z"
       },
       {
-        "id": 3,
+        "id": 4,
         "type": "HIGHLIGHT",
         "category": "GERAL",
         "headline": "Transforme o complexo em simplicidade com nossos sistemas",
@@ -64,7 +75,7 @@ export class NoticiaService {
         "date": "2024-12-19T14:00:00Z"
       },
       {
-        "id": 4,
+        "id": 5,
         "type": "HIGHLIGHT",
         "category": "GERAL",
         "headline": "Solução personalizada na palma de sua mão: Aplicativos que conectam você ao futuro",
@@ -75,7 +86,7 @@ export class NoticiaService {
         "date": "2024-12-19T14:00:00Z"
       },
       {
-        "id": 5,
+        "id": 6,
         "type": "COMMON",
         "category": "GERAL",
         "headline": "Aumento da temperatura média no Brasil",
@@ -86,7 +97,7 @@ export class NoticiaService {
         "date": "2024-11-20T14:00:00Z"
       },
       {
-        "id": 6,
+        "id": 7,
         "type": "COMMON",
         "category": "POLITICA",
         "headline": "Novo projeto de lei sobre segurança pública é aprovado",
@@ -97,7 +108,7 @@ export class NoticiaService {
         "date": "2024-12-10T09:30:00Z"
       },
       {
-        "id": 7,
+        "id": 8,
         "type": "COMMON",
         "category": "POLICIAL",
         "headline": "Operação policial desmantela quadrilha de tráfico",
@@ -108,7 +119,7 @@ export class NoticiaService {
         "date": "2024-11-25T11:45:00Z"
       },
       {
-        "id": 8,
+        "id": 9,
         "type": "COMMON",
         "category": "ESPORTES",
         "headline": "Time local vence campeonato regional",
@@ -119,7 +130,7 @@ export class NoticiaService {
         "date": "2024-12-05T18:00:00Z"
       },
       {
-        "id": 9,
+        "id": 10,
         "type": "COMMON",
         "category": "CULTURA",
         "headline": "Festival de cinema ocorre na cidade",
@@ -130,7 +141,7 @@ export class NoticiaService {
         "date": "2024-11-15T20:30:00Z"
       },
       {
-        "id": 10,
+        "id": 11,
         "type": "COMMON",
         "category": "GERAL",
         "headline": "Crescimento do turismo em regiões rurais",
@@ -141,7 +152,7 @@ export class NoticiaService {
         "date": "2024-11-22T16:00:00Z"
       },
       {
-        "id": 11,
+        "id": 12,
         "type": "COMMON",
         "category": "POLITICA",
         "headline": "Eleições municipais se aproximam",
@@ -152,7 +163,7 @@ export class NoticiaService {
         "date": "2024-12-01T10:15:00Z"
       },
       {
-        "id": 12,
+        "id": 13,
         "type": "COMMON",
         "category": "ESPORTES",
         "headline": "Atleta local se destaca em competição internacional",
@@ -163,7 +174,7 @@ export class NoticiaService {
         "date": "2024-12-08T15:30:00Z"
       },
       {
-        "id": 13,
+        "id": 14,
         "type": "COMMON",
         "category": "CULTURA",
         "headline": "Exposição de arte contemporânea atrai visitantes",
@@ -174,7 +185,7 @@ export class NoticiaService {
         "date": "2024-11-30T13:45:00Z"
       },
       {
-        "id": 14,
+        "id": 15,
         "type": "COMMON",
         "category": "GERAL",
         "headline": "Avanços na tecnologia de energias renováveis",
@@ -185,7 +196,7 @@ export class NoticiaService {
         "date": "2024-11-18T17:00:00Z"
       },
       {
-        "id": 15,
+        "id": 16,
         "type": "COMMON",
         "category": "POLITICA",
         "headline": "Reforma tributária é debatida no Senado",
@@ -196,7 +207,7 @@ export class NoticiaService {
         "date": "2024-12-12T12:00:00Z"
       },
       {
-        "id": 16,
+        "id": 17,
         "type": "COMMON",
         "category": "ESPORTES",
         "headline": "Maratona da cidade atrai corredores de todo o país",
@@ -207,7 +218,7 @@ export class NoticiaService {
         "date": "2024-11-28T09:00:00Z"
       },
       {
-        "id": 17,
+        "id": 18,
         "type": "COMMON",
         "category": "CULTURA",
         "headline": "Festa tradicional resgata costumes locais",
@@ -218,7 +229,7 @@ export class NoticiaService {
         "date": "2024-12-04T14:00:00Z"
       },
       {
-        "id": 18,
+        "id": 19,
         "type": "COMMON",
         "category": "CULTURA",
         "headline": "Novo programa de incentivo à leitura é lançado",

@@ -17,5 +17,5 @@ import { AddBannerComponent } from './components/add-banner/add-banner.component
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'mogi-em-alerta-frontend';
+  title = 'portal-noticias-frontend';
 }

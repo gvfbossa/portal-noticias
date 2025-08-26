@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header__logo-container">
         <div class="header__logo">
-            <img (click)="navigateTo('', false)" src="assets/images/mogi-em-alerta-logo.png" alt="Logo" class="header__logo-image">
+            <img (click)="navigateTo('', false)" src="assets/images/bws_logo.png" alt="Logo" class="header__logo-image">
         </div>
     </div>
     
@@ -46,22 +46,19 @@
             <nav class="header__hamburger-menu" *ngIf="isMenuOpen">
                 <ul>
                     <div class="header__social-icons">
-                        <a href="https://www.facebook.com/mogiemalerta" target="_blank" class="fab fa-facebook-f"></a>
-                        <a href="https://www.instagram.com/mogiemalerta/" target="_blank" class="fab fa-instagram"></a>
-                        <a href="https://api.whatsapp.com/send/?phone=5511942430240" target="_blank" class="fab fa-whatsapp"></a>
-                        <!--<a href="mailto:#" class="fas fa-envelope"></a> -->
+                        <a href="https://www.facebook.com/people/Bossa-Web-Solutions/61558090378155/" target="_blank" class="fab fa-facebook-f"></a>
+                        <a href="https://www.instagram.com/bossawebsolutions/" target="_blank" class="fab fa-instagram"></a>
+                        <a href="https://api.whatsapp.com/send/?phone=5511953468808" target="_blank" class="fab fa-whatsapp"></a>
+                        <a href="mailto:contato@bossawebsolutions.com.br" class="fas fa-envelope"></a>
                     </div>
                     <hr style="border: 1px solid #434343; margin: 20px 0; width: 100%;">
                     <li><a (click)="navigateTo('', true)">Início</a></li>
                     <li><a (click)="navigateTo('noticia-categoria/geral', true)">Geral</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/mogi', true)">Mogi das Cruzes</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/suzano', true)">Suzano</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/poa', true)">Poá</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/itaqua', true)">Itaquaquecetuba</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/aruja', true)">Arujá</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/guararema', true)">Guararema</a></li>
-                    <li><a (click)="navigateTo('noticia-categoria/biritiba', true)">Biritiba Mirim</a></li>
-
+                    <li><a (click)="navigateTo('noticia-categoria/politica', true)">Política</a></li>
+                    <li><a (click)="navigateTo('noticia-categoria/policial', true)">Policial</a></li>
+                    <li><a (click)="navigateTo('noticia-categoria/esportes', true)">Esportes</a></li>
+                    <li><a (click)="navigateTo('noticia-categoria/cultura', true)">Cultura</a></li>
+                    
                     <li><a (click)="navigateTo('noticia-categoria/emprego', true)">Emprego</a></li>
                     <li><a (click)="navigateTo('noticia-categoria/achadosperdidos', true)">Achados e Perdidos</a></li>
                     <li><a (click)="navigateTo('noticia-categoria/anuncios', true)">Produtos e Serviços</a></li>

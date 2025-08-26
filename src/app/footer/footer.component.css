@@ -15,7 +15,7 @@
         align-items: center;
     }
 
-    .footer__jj,
+    .footer__empresa,
     .footer__bws {
         font-weight: bold;
         padding: 0.5rem;
@@ -29,19 +29,19 @@
         color: #0052cc;
     }
 
-    .footer__jj a {
+    .footer__empresa a {
         text-decoration: none;
         color: #012448;
     }
 
-    .footer__jj a:hover {
+    .footer__empresa a:hover {
         cursor: pointer;
     }
 
     @media (max-width: 768px) {
         .footer__container {
             display: block;
-            align-items: center; /* Centraliza os itens */
+            align-items: center;
             text-align: center;
             font-size: 0.7rem;
         }

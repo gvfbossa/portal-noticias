@@ -35,13 +35,10 @@ export class HeaderComponent implements OnInit {
       route: '', 
       subcategories: [
         { name: 'Geral', route: 'noticia-categoria/geral' },
-        { name: 'Mogi das Cruzes', route: 'noticia-categoria/mogi' },
-        { name: 'Suzano', route: 'noticia-categoria/suzano' },
-        { name: 'Poá', route: 'noticia-categoria/poa' },
-        { name: 'Itaquaquecetuba', route: 'noticia-categoria/itaqua' },
-        { name: 'Arujá', route: 'noticia-categoria/aruja' },
-        { name: 'Guararema', route: 'noticia-categoria/guararema' },
-        { name: 'Biritiba Mirim', route: 'noticia-categoria/biritiba' },
+        { name: 'Política', route: 'noticia-categoria/politica' },
+        { name: 'Policial', route: 'noticia-categoria/policial' },
+        { name: 'Esportes', route: 'noticia-categoria/esportes' },
+        { name: 'Cultura', route: 'noticia-categoria/cultura' },
       ]
     },
     { name: 'EMPREGO', route: 'noticia-categoria/emprego'},
@@ -54,7 +51,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.updateDateTime()
     
-    this.noticiaService.getNoticias().subscribe(noticias => {
+    this.noticiaService.getNoticiasMock().subscribe(noticias => {
 
       this.noticias = noticias.content
     })
