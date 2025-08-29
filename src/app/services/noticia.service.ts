@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PagedResponse } from '../paged-response.model';
-import { Noticia } from '../noticia.model';
+import { Noticia } from '../../models/noticia.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -26,7 +26,7 @@ export class NoticiaService {
         "headline": "Como publicar uma Notícia ou Anúncio em seu site?",
         "subtitle": "Nesta matéria você irá descobrir como publicar notícias e anúncios em seu novo Portal!",
         "summary": "Descubra como publicar notícias e anúncios personalizados em seu novo Portal, utilizando a tecnologia Bossa Web Solutions!",
-        "image": "assets/images/bws_logo.png",
+        "image": "assets/images/noticia0_bws_como.jpg",
         "fullText": "Após fazer **login** de administrador em seu portal, você poderá publicar suas notícias personalizadas e os anúncios vendidos! A Bossa Web Solutions criou uma solução prática para você, chamada **Área de Gerenciamento**! Confira o passo a passo para acessá-la: \n\n**1-** Clique no **rodapé** da página em **Portal de Notícias** (Você será redirecionado para a **página de login**. \n**2-** Efetue login e senha com as credencias fornecidas (para este portfólio são: **login: admin**, **senha: admin123**). \n**3-** Na seção de **Gerenciamento**, você poderá publicar suas notícias e anúncios vendidos de acordo com suas preferencias. \n\n**Bossa Web Solutions, Transforme o complexo em Simplicidade!**",
         "date": "2024-12-19T14:00:00Z"
       },

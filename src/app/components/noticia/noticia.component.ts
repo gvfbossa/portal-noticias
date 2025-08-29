@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AddsComponent } from "../adds/adds.component"
-import { Noticia } from '../../noticia.model'
+import { Noticia } from '../../../models/noticia.model'
 
 @Component({
   selector: 'app-noticia',

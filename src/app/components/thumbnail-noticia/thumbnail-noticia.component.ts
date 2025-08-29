@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule, DatePipe } from '@angular/common'
-import { Noticia } from '../../noticia.model'
+import { Noticia } from '../../../models/noticia.model'
 
 @Component({
   selector: 'app-thumbnail-noticia',

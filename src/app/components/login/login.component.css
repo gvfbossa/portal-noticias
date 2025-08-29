@@ -1,43 +1,53 @@
 .login-container {
-    max-width: 30rem;
-    margin: 5rem auto;
-    padding: 2rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
-    margin-top: 2rem;
-  }
-  
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.3rem;
-  }
-  
+  max-width: 30rem;
+  margin: 5rem auto;
+  padding: 2rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.3rem;
+}
+
+button {
+  margin-top: 1rem;
+  width: 31.1rem;
+  padding: 0.7rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
   button {
-    margin-top: 1rem;
-    width: 31.1rem;
-    padding: 0.7rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0.3rem;
     cursor: pointer;
+    width: 105%;
   }
-  
-  button:disabled {
-    background-color: #aaa;
-    cursor: not-allowed;
+
+  .login-container {
+    max-width: 80%;
   }
-  
-  .error {
-    color: red;
-    margin-top: 1rem;
-  }
-  
+}

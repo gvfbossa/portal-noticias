@@ -6,7 +6,7 @@ import { ThumbnailNoticiaComponent } from '../components/thumbnail-noticia/thumb
 import { NoticiaService } from '../services/noticia.service'
 import { Router } from '@angular/router'
 import { AddsComponent } from "../components/adds/adds.component"
-import { Noticia } from '../noticia.model'
+import { Noticia } from '../../models/noticia.model'
 import { AnuncioComponent } from "../components/anuncio/anunucio.component";
 
 @Component({

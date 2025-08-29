@@ -275,7 +275,7 @@ a {
   }
 
   .header__date-and-search {
-    width: 95%;
+    width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -286,7 +286,7 @@ a {
     font-size: 0.8rem;
     margin-left: 0.5rem;
     margin-bottom: 0;
-    width: 77%;
+    width: 90%;
   }
 
   .header__search-container {

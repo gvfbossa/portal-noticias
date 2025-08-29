@@ -6,7 +6,7 @@ import { Router } from '@angular/router'
 import { ThumbnailDestaqueComponent } from "../thumbnail-destaque/thumbnail-destaque.component"
 import { ThumbnailNoticiaComponent } from "../thumbnail-noticia/thumbnail-noticia.component"
 import { AddsComponent } from "../adds/adds.component"
-import { Noticia } from '../../noticia.model'
+import { Noticia } from '../../../models/noticia.model'
 
 @Component({
   selector: 'app-noticia-categoria',

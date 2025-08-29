@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
-import { Noticia } from '../../noticia.model'
+import { Noticia } from '../../../models/noticia.model'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
@@ -121,6 +121,12 @@ export class GerenciarNoticiasComponent implements OnInit {
 
   onDeleteAnuncio(id: number): void {
     if (confirm('Tem certeza que deseja apagar este anúncio?')) {
+
+      if (this.portfolio) {
+        alert('Você irá apagar o anúncio! (Esta é uma simulação)')
+        return
+      }
+
       const authHeader = localStorage.getItem('authHeader');
       const headers = new HttpHeaders({ Authorization: authHeader || '' });
 
@@ -138,16 +144,6 @@ export class GerenciarNoticiasComponent implements OnInit {
   }
 
   loadAnuncios(): void {
-    if (this.portfolio) {
-      of([
-        { id: 1, url: 'https://exemplo.com/anuncio1', imagem: 'anuncio1.jpg', position: 'MAIN_TOP', dataExpiracao: '2025-12-31' },
-        { id: 2, url: 'https://exemplo.com/anuncio2', imagem: 'anuncio2.jpg', position: 'MAIN_MIDDLE', dataExpiracao: '2025-11-30' }
-      ])
-        .pipe(delay(300))
-        .subscribe(res => this.anuncios = res)
-      return
-    }
-
     const authHeader = localStorage.getItem('authHeader');
     const headers = new HttpHeaders({ Authorization: authHeader || '' });
 
@@ -179,6 +175,14 @@ export class GerenciarNoticiasComponent implements OnInit {
     if (!this.anuncio.url || !this.anuncio.position || !this.anuncio.dataExpiracao || !this.anuncio.imagem) {
       alert('Preencha todos os campos do anúncio.');
       return;
+    }
+
+    if (this.portfolio) {
+      alert('Você irá cadastrar um anúncio! (Esta é uma simulação)')
+      this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' };
+      this.isSubmitting = false;
+      this.loadAnuncios();
+      return
     }
 
     this.isSubmitting = true;
@@ -218,10 +222,6 @@ export class GerenciarNoticiasComponent implements OnInit {
   }
 
   editNoticia(noticia: Noticia): void {
-    if (this.portfolio) {
-      alert('Você irá editar a notícia! (Esta é uma simulação)')
-      return
-    }
     console.log('Noticia selecionada:', noticia)
     this.noticia = { ...noticia }
     if (this.noticiaForm) {

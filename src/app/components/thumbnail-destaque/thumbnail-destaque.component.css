@@ -45,7 +45,8 @@
     font-size: 2.5rem;
     font-weight: bold;
     color: #000;
-    hyphens: auto;
+    text-wrap: wrap;
+    max-width: 99%;
 }
 
 .highlight__subtitle {
@@ -56,7 +57,7 @@
 }
 
 .highlight__summary {
-    display: none;
+    margin-top: 2rem;
 }
 
 .highlight__date {
