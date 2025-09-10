@@ -11,13 +11,17 @@ import { AdPositionLabels, AnuncioService } from '../../services/anuncio.service
 import { environment } from '../../../environments/environment'
 import { delay, of } from 'rxjs'
 import { NoticiaService } from '../../services/noticia.service'
+import { SpinnerComponent } from "../spinner/spinner.component";
+import { ToastService } from '../../services/toast.service';
+import { ConfirmService } from '../../services/confirm.service'
 
 @Component({
   selector: 'app-gerenciar-noticias',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    SpinnerComponent
   ],
   templateUrl: './gerenciar-noticias.component.html',
   styleUrl: './gerenciar-noticias.component.css'
@@ -32,6 +36,8 @@ export class GerenciarNoticiasComponent implements OnInit {
   types: any
   noticias: Noticia[] = []
 
+  isLoading: boolean = false
+
   anuncios: any[] = [];
 
   anuncio: Anuncio = {
@@ -45,40 +51,44 @@ export class GerenciarNoticiasComponent implements OnInit {
 
   portfolio = true
 
-  constructor(private http: HttpClient, private router: Router, private anuncioService: AnuncioService, private noticiaService: NoticiaService) { }
+  constructor(private http: HttpClient, private router: Router, private anuncioService: AnuncioService, private noticiaService: NoticiaService, private toastService: ToastService, private confirmService: ConfirmService) { }
 
   ngOnInit(): void {
     const authHeader = localStorage.getItem('authHeader')
     if (!authHeader) {
-      alert('Por favor, faça login primeiro.')
+      this.toastService.show('Por favor, faça login primeiro.', 'warning');
       this.router.navigate(['/login'])
       return
     }
 
     if (this.portfolio) {
       of([
-        { name: 'Geral' },
-        { name: 'Política' },
-        { name: 'Policial' },
-        { name: 'Esportes' },
-        { name: 'Cultura' },
-        { name: 'Emprego' },
-        { name: 'Achados e Perdidos' },
-        { name: 'Produtos e Serviços' },
-        { name: 'Reclamações' }
+        { name: 'Geral', value: 'GERAL' },
+        { name: 'Política', value: 'POLITICA' },
+        { name: 'Policial', value: 'POLICIAL' },
+        { name: 'Esportes', value: 'ESPORTES' },
+        { name: 'Cultura', value: 'CULTURA' },
+        { name: 'Emprego', value: 'EMPREGO' },
+        { name: 'Achados e Perdidos', value: 'ACHADOS_PERDIDOS' },
+        { name: 'Produtos e Serviços', value: 'ANUNCIOS' },
+        { name: 'Reclamações', value: 'RECLAMACOES' }
       ])
         .pipe(delay(300))
         .subscribe(res => this.categorias = res)
 
       of([
-        { name: 'Destaque' },
-        { name: 'Comum' }
+        { name: 'Destaque', value: 'HIGHLIGHT' },
+        { name: 'Comum', value: 'COMMON' }
       ])
         .pipe(delay(300))
         .subscribe(res => this.types = res)
 
+      this.isLoading = true
       this.loadNoticias()
       this.loadAnuncios()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000);
 
       of(['MAIN_TOP', 'MAIN_MIDDLE', 'NEWS_RIGHT'])
         .pipe(delay(300))
@@ -90,8 +100,7 @@ export class GerenciarNoticiasComponent implements OnInit {
           this.categorias = response
         },
         (error: any) => {
-          console.error('Erro ao carregar categorias:', error)
-          alert('Não foi possível carregar as categorias.')
+          this.toastService.show('Não foi possível carregar as categorias.', 'error');
         }
       )
 
@@ -100,8 +109,7 @@ export class GerenciarNoticiasComponent implements OnInit {
           this.types = response
         },
         (error: any) => {
-          console.error('Erro ao carregar tipos:', error)
-          alert('Não foi possível carregar os tipos.')
+          this.toastService.show('Não foi possível carregar os tipos.', 'error');
         }
       )
 
@@ -119,28 +127,28 @@ export class GerenciarNoticiasComponent implements OnInit {
     }
   }
 
-  onDeleteAnuncio(id: number): void {
-    if (confirm('Tem certeza que deseja apagar este anúncio?')) {
+  async onDeleteAnuncio(id: number) {
+    const confirmed = await this.confirmService.confirm('Tem certeza que deseja apagar este anúncio?');
 
-      if (this.portfolio) {
-        alert('Você irá apagar o anúncio! (Esta é uma simulação)')
-        return
-      }
+    if (!confirmed) return;
 
-      const authHeader = localStorage.getItem('authHeader');
-      const headers = new HttpHeaders({ Authorization: authHeader || '' });
-
-      this.anuncioService.deletar(id, headers).subscribe(
-        () => {
-          alert('Anúncio deletado com sucesso!');
-          this.loadAnuncios();
-        },
-        (error) => {
-          console.error('Erro ao deletar anúncio:', error);
-          alert('Erro ao apagar o anúncio.');
-        }
-      );
+    if (this.portfolio) {
+      this.toastService.show('Você irá apagar o anúncio! (Esta é uma simulação)', 'warning')
+      return
     }
+
+    const authHeader = localStorage.getItem('authHeader');
+    const headers = new HttpHeaders({ Authorization: authHeader || '' });
+
+    this.anuncioService.deletar(id, headers).subscribe(
+      () => {
+        this.toastService.show('Anúncio deletado com sucesso!', 'success')
+        this.loadAnuncios();
+      },
+      (error) => {
+        this.toastService.show('Erro ao apagar o anúncio.', 'error')
+      }
+    );
   }
 
   loadAnuncios(): void {
@@ -166,19 +174,19 @@ export class GerenciarNoticiasComponent implements OnInit {
     if (file && file.type.startsWith('image/')) {
       this.anuncio.imagem = file;
     } else {
-      alert('Selecione uma imagem válida.');
+      this.toastService.show('Selecione uma imagem válida.', 'warning')
       event.target.value = '';
     }
   }
 
   onSubmitAnuncio(): void {
     if (!this.anuncio.url || !this.anuncio.position || !this.anuncio.dataExpiracao || !this.anuncio.imagem) {
-      alert('Preencha todos os campos do anúncio.');
+      this.toastService.show('Preencha todos os campos do anúncio.', 'warning')
       return;
     }
 
     if (this.portfolio) {
-      alert('Você irá cadastrar um anúncio! (Esta é uma simulação)')
+      this.toastService.show('Você irá cadastrar um anúncio! (Esta é uma simulação).', 'info')
       this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' };
       this.isSubmitting = false;
       this.loadAnuncios();
@@ -189,14 +197,14 @@ export class GerenciarNoticiasComponent implements OnInit {
 
     this.anuncioService.criar(this.anuncio).subscribe(
       (response) => {
-        alert('Anúncio cadastrado com sucesso!');
+        this.toastService.show('Anúncio cadastrado com sucesso!', 'success')
         this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' };
         this.isSubmitting = false;
         this.loadAnuncios();
       },
       (error) => {
         console.error('Erro ao cadastrar anúncio:', error);
-        alert('Erro ao cadastrar anúncio.');
+        this.toastService.show('Erro ao cadastrar anúncio', 'error')
         this.isSubmitting = false;
       }
     );
@@ -209,20 +217,21 @@ export class GerenciarNoticiasComponent implements OnInit {
       });
       return;
     }
-
+    this.isLoading = true
     this.http.get<PagedResponse<Noticia>>(`${this.apiBaseUrl}/api/noticias/todas?page=${page}&size=${size}`).subscribe(
       (response) => {
+        this.isLoading = false
         this.noticias = response.content
       },
       (error) => {
+        this.isLoading = false
         console.error('Erro ao carregar notícias:', error)
-        alert('Não foi possível carregar as notícias.')
+        this.toastService.show('Não foi possível carregar as notícias.', 'error')
       }
     )
   }
 
   editNoticia(noticia: Noticia): void {
-    console.log('Noticia selecionada:', noticia)
     this.noticia = { ...noticia }
     if (this.noticiaForm) {
       this.noticiaForm.form.patchValue({
@@ -236,31 +245,35 @@ export class GerenciarNoticiasComponent implements OnInit {
     }
   }
 
-  onDelete(): void {
+  async onDelete() {
+    const confirmed = await this.confirmService.confirm('Tem certeza que deseja apagar esta notícia?');
+
+    if (!confirmed) return;
+
     if (this.portfolio) {
-      alert('Você irá apagar a notícia! (Esta é uma simulação)')
+      this.toastService.show('Você irá apagar a notícia! (Esta é uma simulação).', 'info')
       return
     }
-    if (confirm('Tem certeza que deseja apagar esta notícia?')) {
-      this.isSubmitting = true
-      const authHeader = localStorage.getItem('authHeader')
+    this.isSubmitting = true
+    this.isLoading = true
+    const authHeader = localStorage.getItem('authHeader')
 
-      const headers = { Authorization: authHeader !== null ? authHeader : '' }
+    const headers = { Authorization: authHeader !== null ? authHeader : '' }
 
-      this.http.delete(`${this.apiBaseUrl}/api/noticias/cadastro/${this.noticia.id}`, { headers }).subscribe(
-        (response: any) => {
-          alert('Notícia apagada com sucesso!')
-          this.loadNoticias()
-          this.noticia = new Noticia()
-          this.isSubmitting = false
-        },
-        (error: any) => {
-          console.error('Erro ao apagar notícia:', error)
-          alert('Erro ao apagar a notícia.')
-          this.isSubmitting = false
-        }
-      )
-    }
+    this.http.delete(`${this.apiBaseUrl}/api/noticias/cadastro/${this.noticia.id}`, { headers }).subscribe(
+      (response: any) => {
+        this.isLoading = false
+        this.toastService.show('Notícia apagada com sucesso!', 'success')
+        this.loadNoticias()
+        this.noticia = new Noticia()
+        this.isSubmitting = false
+      },
+      (error: any) => {
+        this.isLoading = false
+        this.toastService.show('Erro ao apagar a notícia.', 'error')
+        this.isSubmitting = false
+      }
+    )
   }
 
 
@@ -271,21 +284,21 @@ export class GerenciarNoticiasComponent implements OnInit {
 
   onImageChange(event: any): void {
     if (this.portfolio) {
-      alert('Você irá substituir a imagem da notícia! (Esta é uma simulação)')
+      this.toastService.show('Você irá substituir a imagem da notícia! (Esta é uma simulação).', 'info')
       return
     }
     const file = event.target.files[0]
     if (file && file.type.startsWith('image/')) {
       this.noticia.imagePath = file
     } else {
-      alert('Por favor, selecione um arquivo de imagem válido.')
+      this.toastService.show('Por favor, selecione um arquivo de imagem válido', 'warning')
       event.target.value = ''
     }
   }
 
   onSubmit(): void {
     if (this.portfolio) {
-      alert('Você irá publicar a notícia! (Esta é uma simulação)')
+      this.toastService.show('Você irá publicar a notícia! (Esta é uma simulação)', 'info')
       return
     }
     if (!this.noticiaForm.valid || this.isSubmitting) return
@@ -294,6 +307,7 @@ export class GerenciarNoticiasComponent implements OnInit {
     const headers = { Authorization: authHeader !== null ? authHeader : '' }
 
     this.isSubmitting = true
+    this.isLoading = true
     const formData = new FormData()
     formData.append('type', this.noticia.type)
     formData.append('category', this.noticia.category)
@@ -314,14 +328,16 @@ export class GerenciarNoticiasComponent implements OnInit {
     this.http[requestMethod](requestUrl, formData, { headers }
     ).subscribe(
       (response: any) => {
-        alert(this.noticia.id ? 'Notícia atualizada com sucesso!' : 'Notícia cadastrada com sucesso!')
+        this.toastService.show(this.noticia.id ? 'Notícia atualizada com sucesso!' : 'Notícia cadastrada com sucesso!', 'success')
         this.isSubmitting = false
+        this.isLoading = false
         this.noticia = new Noticia()
         this.loadNoticias()
       },
       (error: any) => {
         console.error(error)
-        alert('Erro ao salvar a notícia.')
+        this.isLoading = false
+        this.toastService.show('Erro ao salvar a notícia.', 'error')
         this.isSubmitting = false
       }
     )

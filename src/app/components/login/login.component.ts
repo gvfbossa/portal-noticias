@@ -3,14 +3,16 @@ import { Router } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { AuthService } from '../../services/auth.service'
+import { SpinnerComponent } from '../spinner/spinner.component'
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule,
-    CommonModule
-  ],
+    CommonModule,
+    SpinnerComponent
+],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,6 +24,7 @@ export class LoginComponent {
   isSubmitting = false
   errorMessage: string = ''
   portfolio = true
+  isLoading: boolean = false
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -34,20 +37,25 @@ export class LoginComponent {
       password: this.password
     }
 
+    this.isLoading = true
     if (this.isProd) {
-      // Chama o método de login do AuthService para gerenciar a autenticação
+      
       this.authService.login(body).subscribe(
         () => {
-          // Redireciona para a página de gerenciamento de notícias
+          this.isLoading = false
           this.router.navigate(['/gerenciar-noticias'])
         },
         (error) => {
+          this.isLoading = false
           this.errorMessage = (error.status === 403 || error.status === 401) ? 'Usuário ou senha inválidos.' : 'Erro desconhecido.'
           this.isSubmitting = false
         }
       )
     }
     else {
+      setTimeout(() => {
+        this.isLoading = false
+      }, 3000);
       this.router.navigate(['/gerenciar-noticias'])
     }
   }

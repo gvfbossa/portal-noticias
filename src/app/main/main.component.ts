@@ -7,7 +7,7 @@ import { NoticiaService } from '../services/noticia.service'
 import { Router } from '@angular/router'
 import { AddsComponent } from "../components/adds/adds.component"
 import { Noticia } from '../../models/noticia.model'
-import { AnuncioComponent } from "../components/anuncio/anunucio.component";
+import { SpinnerComponent } from "../components/spinner/spinner.component";
 
 @Component({
   selector: 'app-main',
@@ -18,7 +18,7 @@ import { AnuncioComponent } from "../components/anuncio/anunucio.component";
     ThumbnailDestaqueComponent,
     ThumbnailNoticiaComponent,
     AddsComponent,
-    AnuncioComponent,
+    SpinnerComponent,
 ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
@@ -31,12 +31,15 @@ export class MainComponent implements OnInit {
   currentSlide = 0;
   interval: any;
 
+  isLoading: boolean = false
+
   @ViewChild('highlightScroll', { static: true }) highlightScroll!: ElementRef
   indicatorPosition = 0
 
   constructor(private router: Router, private noticiaService: NoticiaService) {}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.noticiaService.getNoticiasMock().subscribe({
       next: (response) => {
         const noticias = response.content
@@ -55,6 +58,9 @@ export class MainComponent implements OnInit {
         console.error('Erro ao buscar notícias:', err)
       },
     })
+    setTimeout(() => {
+      this.isLoading = false
+    }, 500);
 
     this.startAutoSlide();
   }

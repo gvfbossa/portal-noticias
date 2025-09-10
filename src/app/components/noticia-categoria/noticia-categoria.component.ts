@@ -7,6 +7,8 @@ import { ThumbnailDestaqueComponent } from "../thumbnail-destaque/thumbnail-dest
 import { ThumbnailNoticiaComponent } from "../thumbnail-noticia/thumbnail-noticia.component"
 import { AddsComponent } from "../adds/adds.component"
 import { Noticia } from '../../../models/noticia.model'
+import { SobreComponent } from "../sobre/sobre.component";
+import { SpinnerComponent } from "../spinner/spinner.component";
 
 @Component({
   selector: 'app-noticia-categoria',
@@ -15,7 +17,8 @@ import { Noticia } from '../../../models/noticia.model'
     CommonModule,
     ThumbnailDestaqueComponent,
     ThumbnailNoticiaComponent,
-    AddsComponent
+    AddsComponent,
+    SpinnerComponent
 ],
   templateUrl: './noticia-categoria.component.html',
   styleUrls: ['./noticia-categoria.component.css']
@@ -40,6 +43,8 @@ export class NoticiaCategoriaComponent implements OnInit {
   currentSlide = 0;
   interval: any;
 
+  isLoading: boolean = false
+
   constructor(
     private route: ActivatedRoute,
     private noticiaService: NoticiaService,
@@ -47,9 +52,11 @@ export class NoticiaCategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.route.params.subscribe(params => {
       this.categoria = params['type']
       this.filtrarNoticias()
+      this.isLoading = false
     })
 
     this.startAutoSlide();

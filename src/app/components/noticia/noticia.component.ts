@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AddsComponent } from "../adds/adds.component"
 import { Noticia } from '../../../models/noticia.model'
+import { SpinnerComponent } from "../spinner/spinner.component";
 
 @Component({
   selector: 'app-noticia',
@@ -14,7 +15,8 @@ import { Noticia } from '../../../models/noticia.model'
     CommonModule,
     DatePipe,
     RouterModule,
-    AddsComponent
+    AddsComponent,
+    SpinnerComponent
 ],
   templateUrl: './noticia.component.html',
   styleUrl: './noticia.component.css'
@@ -27,30 +29,25 @@ export class NoticiaComponent implements OnInit {
   highlights: any[] = []
   commonNews: any[] = []
 
+  isLoading: boolean = false
+
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.noticia = history.state?.noticia
 
-    if (!this.noticia) {
-      console.error("Notícia não encontrada no estado")
-      
+    if (!this.noticia) {      
       const id = this.route.snapshot.paramMap.get('id')
       if (id) {
         this.noticia = this.findNoticiaById(id)
-        console.log("Notícia encontrada pela ID da rota: ", this.noticia)
       }
-
-    }
-
-    if (!this.noticia) {
-      console.error("Notícia não encontrada!")
     }
 
     if (this.noticia?.fullText) {
       this.fullTextProcessed = this.sanitizeFullText(this.noticia.fullText);
     }
-    console.log("NOTICIA: ", this.noticia)
+    this.isLoading = false
   }
 
   findNoticiaById(id: string | null): any {

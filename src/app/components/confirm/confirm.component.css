@@ -1,0 +1,46 @@
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001; /* acima do toast */
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 8px;
+  max-width: 350px;
+  width: 90%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.confirm-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.confirm-yes {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-no {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
