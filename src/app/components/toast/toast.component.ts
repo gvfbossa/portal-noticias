@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'
+import { Component } from '@angular/core'
 
 interface Toast {
-  message: string;
-  type: 'success' | 'error' | 'info' | 'warning';
+  message: string
+  type: 'success' | 'error' | 'info' | 'warning'
 }
 
 @Component({
@@ -16,14 +16,14 @@ interface Toast {
   styleUrl: './toast.component.css'
 })
 export class ToastComponent {
-  toasts: Toast[] = [];
+  toasts: Toast[] = []
 
   show(message: string, type: Toast['type'] = 'info', duration = 3000) {
-    const toast: Toast = { message, type };
-    this.toasts.push(toast);
+    const toast: Toast = { message, type }
+    this.toasts.push(toast)
 
     setTimeout(() => {
-      this.toasts = this.toasts.filter(t => t !== toast);
-    }, duration);
+      this.toasts = this.toasts.filter(t => t !== toast)
+    }, duration)
   }
 }

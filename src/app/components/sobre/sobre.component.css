@@ -1,102 +1,101 @@
 .sobre {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .sobre__content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
 }
 
 .sobre__main {
-    text-align: center;
+  text-align: center;
 }
 
 .sobre__logo-container {
-    display: block;
-    cursor: pointer;
-    align-content: center;
-    align-items: center;
-    margin-left: 15rem;
-  }
-  
-  .sobre__logo {
-    font-weight: bold;
-    display: flex;
-  }
-
-  .sobre__logo a {
-    text-decoration: none;
-  }
-  
-  .sobre__logo-image {
-    height: 17rem;
-    width: auto;
-  }
-  
-  .sobre__logo-text {
-    color: black;
-    text-align: center;
-    font-size: 5rem;
-    line-height: 1;
-    margin-top: 2.5rem;
-    width: 30%;
-  }
-  
-  .sobre__logo-text-bws {
-    font-size: 5.5rem;
-    line-height: 1;
-  }
-
-.sobre__texto {
-    text-indent: 4rem;
-    margin-top: 2rem;
-    margin-left: 4rem;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    hyphens: auto;
-    color: black;
-    text-align: left;
-    width: 90%;
-    text-align: justify;
+  display: block;
+  cursor: pointer;
+  align-content: center;
+  align-items: center;
+  margin-left: 15rem;
 }
 
-/* Versão Mobile */
+.sobre__logo {
+  font-weight: bold;
+  display: flex;
+}
+
+.sobre__logo a {
+  text-decoration: none;
+}
+
+.sobre__logo-image {
+  height: 17rem;
+  width: auto;
+}
+
+.sobre__logo-text {
+  color: black;
+  text-align: center;
+  font-size: 5rem;
+  line-height: 1;
+  margin-top: 2.5rem;
+  width: 30%;
+}
+
+.sobre__logo-text-bws {
+  font-size: 5.5rem;
+  line-height: 1;
+}
+
+.sobre__texto {
+  text-indent: 4rem;
+  margin-top: 2rem;
+  margin-left: 4rem;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  hyphens: auto;
+  color: black;
+  text-align: left;
+  width: 90%;
+  text-align: justify;
+}
+
 @media (max-width: 768px) {
   .sobre {
-      margin-top: 0rem; /* Ajusta a margem superior em telas pequenas */
+    margin-top: 0rem;
   }
 
   .sobre__content {
-      flex-direction: column; /* Empilha os itens verticalmente */
-      gap: 3rem; /* Diminui o espaço entre os elementos */
-      justify-content: flex-start; /* Alinha os itens no topo */
-      margin: 1rem;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: flex-start;
+    margin: 1rem;
   }
 
   .sobre__main {
-      width: 100%; /* Aumenta a largura do conteúdo principal */
-      margin-left: 0; /* Remove a margem esquerda */
-      text-align: center; /* Alinha o conteúdo ao centro */
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
   }
 
   .sobre__logo-container {
-      margin-left: 0; /* Remove a margem esquerda do logo */
-      display: block; /* Garante que o logo ocupe a linha inteira */
-      margin-bottom: 2rem; /* Adiciona um espaçamento abaixo do logo */
+    margin-left: 0;
+    display: block;
+    margin-bottom: 2rem;
   }
 
   .sobre__logo {
-      font-weight: bold;
-      display: flex;
-      flex-direction: column; /* Empilha logo e texto */
-      align-items: center; /* Centraliza logo e texto */
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .sobre__logo-image {
-      height: 12rem; /* Reduz o tamanho da logo */
-      margin-bottom: 1rem; /* Adiciona espaço abaixo da logo */
+    height: 12rem;
+    margin-bottom: 1rem;
   }
 
   .sobre__logo-text-bws {
@@ -104,14 +103,14 @@
   }
 
   .sobre__logo-text {
-      font-size: 2rem; /* Diminui o tamanho do texto do logo */
-      width: 60%; /* Aumenta a largura do texto */
-      text-align: center; /* Centraliza o texto */
+    font-size: 2rem;
+    width: 60%;
+    text-align: center;
   }
 
   .sobre__texto {
-      margin-left: 0; /* Remove a margem esquerda */
-      font-size: 1rem; /* Ajusta o tamanho da fonte */
-      text-align: justify; /* Alinha o texto */
+    margin-left: 0;
+    font-size: 1rem;
+    text-align: justify;
   }
 }

@@ -43,7 +43,7 @@
             <span class="material-icons" (click)="focusOnSearch()">search</span>
             <span class="material-icons header__menu-icon" (click)="toggleMenu()">menu</span>
 
-            <nav class="header__hamburger-menu" *ngIf="isMenuOpen">
+            <nav #menu class="header__hamburger-menu" *ngIf="isMenuOpen">
                 <ul>
                     <div class="header__social-icons">
                         <a href="https://www.facebook.com/people/Bossa-Web-Solutions/61558090378155/" target="_blank" class="fab fa-facebook-f"></a>

@@ -1,17 +1,19 @@
 <div class="noticia" *ngIf="noticia; else loading">
-  <!-- Imagem da notícia -->
   <div *ngIf="noticia.imagePath && noticia.imagePath.trim() !== ''; else semImagem">
-    <img [src]="noticia.imagePath" [alt]="noticia.headline" class="noticia__image" />
+    <img
+      [src]="noticia.imagePath"
+      [alt]="noticia.headline"
+      class="noticia__image"
+    />
   </div>
   <ng-template #semImagem>
     <span class="noticia__image">I</span>
   </ng-template>
 
-  <!-- Textos da notícia (manchete, subtítulo e data) -->
   <div class="noticia__text">
     <h1 class="noticia__headline">{{ noticia.headline }}</h1>
     <h2 class="noticia__subtitle">{{ noticia.subtitle }}</h2>
-    <p class="noticia__date">{{ noticia.date | date: 'dd/MM/yyyy' }}</p>
+    <p class="noticia__date">{{ noticia.date | date : "dd/MM/yyyy" }}</p>
   </div>
 
   <div class="noticia__add">

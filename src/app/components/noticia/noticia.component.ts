@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router'
 import { CommonModule } from '@angular/common'
 import { DatePipe } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { AddsComponent } from "../adds/adds.component"
 import { Noticia } from '../../../models/noticia.model'
-import { SpinnerComponent } from "../spinner/spinner.component";
+import { SpinnerComponent } from "../spinner/spinner.component"
 
 @Component({
   selector: 'app-noticia',
@@ -25,7 +25,7 @@ import { SpinnerComponent } from "../spinner/spinner.component";
 export class NoticiaComponent implements OnInit {
 
   noticia!: Noticia
-  fullTextProcessed!: SafeHtml;
+  fullTextProcessed!: SafeHtml
   highlights: any[] = []
   commonNews: any[] = []
 
@@ -45,7 +45,7 @@ export class NoticiaComponent implements OnInit {
     }
 
     if (this.noticia?.fullText) {
-      this.fullTextProcessed = this.sanitizeFullText(this.noticia.fullText);
+      this.fullTextProcessed = this.sanitizeFullText(this.noticia.fullText)
     }
     this.isLoading = false
   }
@@ -60,8 +60,8 @@ export class NoticiaComponent implements OnInit {
   }
 
   sanitizeFullText(text: string): SafeHtml {
-    const processedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    return this.sanitizer.bypassSecurityTrustHtml(processedText);
+    const processedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    return this.sanitizer.bypassSecurityTrustHtml(processedText)
   }  
 
 }

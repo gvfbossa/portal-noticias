@@ -54,10 +54,16 @@
     color: #4d4d4d;
     align-self: start;
     margin-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .highlight__summary {
     margin-top: 2rem;
+    text-align: justify;
+    hyphens: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .highlight__date {
@@ -90,11 +96,15 @@
     }
   
     .highlight__headline {
-      font-size: 1.3rem; /* Tamanho maior para o título */
+      font-size: 1.2rem; /* Tamanho maior para o título */
       font-weight: bold;
       text-align: center; /* Centraliza o texto */
       margin: 0.5rem 0; /* Margem superior e inferior */
       color: #000; /* Cor para contraste */
+    }
+
+    .highlight__summary {
+      display: none;
     }
   
     .highlight__subtitle {

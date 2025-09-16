@@ -4,15 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { NgForm } from '@angular/forms'
-import { PagedResponse } from '../../paged-response.model'
+import { PagedResponse } from '../../../models/paged-response.model'
 import { Router } from '@angular/router'
 import { Anuncio } from '../../../models/anuncio.model'
 import { AdPositionLabels, AnuncioService } from '../../services/anuncio.service'
 import { environment } from '../../../environments/environment'
 import { delay, of } from 'rxjs'
 import { NoticiaService } from '../../services/noticia.service'
-import { SpinnerComponent } from "../spinner/spinner.component";
-import { ToastService } from '../../services/toast.service';
+import { SpinnerComponent } from "../spinner/spinner.component"
+import { ToastService } from '../../services/toast.service'
 import { ConfirmService } from '../../services/confirm.service'
 
 @Component({
@@ -38,16 +38,16 @@ export class GerenciarNoticiasComponent implements OnInit {
 
   isLoading: boolean = false
 
-  anuncios: any[] = [];
+  anuncios: any[] = []
 
   anuncio: Anuncio = {
     url: '',
     imagem: '',
     position: 'MAIN_TOP',
     dataExpiracao: ''
-  };
+  }
 
-  adPositions: string[] = [];
+  adPositions: string[] = []
 
   portfolio = true
 
@@ -56,7 +56,7 @@ export class GerenciarNoticiasComponent implements OnInit {
   ngOnInit(): void {
     const authHeader = localStorage.getItem('authHeader')
     if (!authHeader) {
-      this.toastService.show('Por favor, faça login primeiro.', 'warning');
+      this.toastService.show('Por favor, faça login primeiro.', 'warning')
       this.router.navigate(['/login'])
       return
     }
@@ -88,7 +88,7 @@ export class GerenciarNoticiasComponent implements OnInit {
       this.loadAnuncios()
       setTimeout(() => {
         this.isLoading = false
-      }, 2000);
+      }, 2000)
 
       of(['MAIN_TOP', 'MAIN_MIDDLE', 'NEWS_RIGHT'])
         .pipe(delay(300))
@@ -100,7 +100,7 @@ export class GerenciarNoticiasComponent implements OnInit {
           this.categorias = response
         },
         (error: any) => {
-          this.toastService.show('Não foi possível carregar as categorias.', 'error');
+          this.toastService.show('Não foi possível carregar as categorias.', 'error')
         }
       )
 
@@ -109,7 +109,7 @@ export class GerenciarNoticiasComponent implements OnInit {
           this.types = response
         },
         (error: any) => {
-          this.toastService.show('Não foi possível carregar os tipos.', 'error');
+          this.toastService.show('Não foi possível carregar os tipos.', 'error')
         }
       )
 
@@ -118,47 +118,47 @@ export class GerenciarNoticiasComponent implements OnInit {
 
       const headers = new HttpHeaders({
         Authorization: authHeader
-      });
+      })
 
       this.anuncioService.getAdPositions(headers).subscribe(
         (positions) => this.adPositions = positions,
         (error) => console.error('Erro ao carregar posições de anúncio', error)
-      );
+      )
     }
   }
 
   async onDeleteAnuncio(id: number) {
-    const confirmed = await this.confirmService.confirm('Tem certeza que deseja apagar este anúncio?');
+    const confirmed = await this.confirmService.confirm('Tem certeza que deseja apagar este anúncio?')
 
-    if (!confirmed) return;
+    if (!confirmed) return
 
     if (this.portfolio) {
       this.toastService.show('Você irá apagar o anúncio! (Esta é uma simulação)', 'warning')
       return
     }
 
-    const authHeader = localStorage.getItem('authHeader');
-    const headers = new HttpHeaders({ Authorization: authHeader || '' });
+    const authHeader = localStorage.getItem('authHeader')
+    const headers = new HttpHeaders({ Authorization: authHeader || '' })
 
     this.anuncioService.deletar(id, headers).subscribe(
       () => {
         this.toastService.show('Anúncio deletado com sucesso!', 'success')
-        this.loadAnuncios();
+        this.loadAnuncios()
       },
       (error) => {
         this.toastService.show('Erro ao apagar o anúncio.', 'error')
       }
-    );
+    )
   }
 
   loadAnuncios(): void {
-    const authHeader = localStorage.getItem('authHeader');
-    const headers = new HttpHeaders({ Authorization: authHeader || '' });
+    const authHeader = localStorage.getItem('authHeader')
+    const headers = new HttpHeaders({ Authorization: authHeader || '' })
 
     this.anuncioService.getAll(headers).subscribe(
       (response) => this.anuncios = response,
       (error) => console.error('Erro ao carregar anúncios:', error)
-    );
+    )
 
     if (this.anuncios.length === 0) {
       console.log("Não há anúncios cadastrados")
@@ -166,56 +166,56 @@ export class GerenciarNoticiasComponent implements OnInit {
   }
 
   getAdPositionLabel(position: string): string {
-    return AdPositionLabels[position] || position;
+    return AdPositionLabels[position] || position
   }
 
   onAnuncioImageChange(event: any): void {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file && file.type.startsWith('image/')) {
-      this.anuncio.imagem = file;
+      this.anuncio.imagem = file
     } else {
       this.toastService.show('Selecione uma imagem válida.', 'warning')
-      event.target.value = '';
+      event.target.value = ''
     }
   }
 
   onSubmitAnuncio(): void {
     if (!this.anuncio.url || !this.anuncio.position || !this.anuncio.dataExpiracao || !this.anuncio.imagem) {
       this.toastService.show('Preencha todos os campos do anúncio.', 'warning')
-      return;
+      return
     }
 
     if (this.portfolio) {
       this.toastService.show('Você irá cadastrar um anúncio! (Esta é uma simulação).', 'info')
-      this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' };
-      this.isSubmitting = false;
-      this.loadAnuncios();
+      this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' }
+      this.isSubmitting = false
+      this.loadAnuncios()
       return
     }
 
-    this.isSubmitting = true;
+    this.isSubmitting = true
 
     this.anuncioService.criar(this.anuncio).subscribe(
       (response) => {
         this.toastService.show('Anúncio cadastrado com sucesso!', 'success')
-        this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' };
-        this.isSubmitting = false;
-        this.loadAnuncios();
+        this.anuncio = { url: '', imagem: '', position: 'MAIN_TOP', dataExpiracao: '' }
+        this.isSubmitting = false
+        this.loadAnuncios()
       },
       (error) => {
-        console.error('Erro ao cadastrar anúncio:', error);
+        console.error('Erro ao cadastrar anúncio:', error)
         this.toastService.show('Erro ao cadastrar anúncio', 'error')
-        this.isSubmitting = false;
+        this.isSubmitting = false
       }
-    );
+    )
   }
 
   loadNoticias(page: number = 0, size: number = 10): void {
     if (this.portfolio) {
       this.noticiaService.getNoticiasMock().pipe(delay(300)).subscribe(res => {
-        this.noticias = res.content;
-      });
-      return;
+        this.noticias = res.content
+      })
+      return
     }
     this.isLoading = true
     this.http.get<PagedResponse<Noticia>>(`${this.apiBaseUrl}/api/noticias/todas?page=${page}&size=${size}`).subscribe(
@@ -246,9 +246,9 @@ export class GerenciarNoticiasComponent implements OnInit {
   }
 
   async onDelete() {
-    const confirmed = await this.confirmService.confirm('Tem certeza que deseja apagar esta notícia?');
+    const confirmed = await this.confirmService.confirm('Tem certeza que deseja apagar esta notícia?')
 
-    if (!confirmed) return;
+    if (!confirmed) return
 
     if (this.portfolio) {
       this.toastService.show('Você irá apagar a notícia! (Esta é uma simulação).', 'info')

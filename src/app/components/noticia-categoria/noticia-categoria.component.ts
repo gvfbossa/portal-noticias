@@ -7,8 +7,7 @@ import { ThumbnailDestaqueComponent } from "../thumbnail-destaque/thumbnail-dest
 import { ThumbnailNoticiaComponent } from "../thumbnail-noticia/thumbnail-noticia.component"
 import { AddsComponent } from "../adds/adds.component"
 import { Noticia } from '../../../models/noticia.model'
-import { SobreComponent } from "../sobre/sobre.component";
-import { SpinnerComponent } from "../spinner/spinner.component";
+import { SpinnerComponent } from "../spinner/spinner.component"
 
 @Component({
   selector: 'app-noticia-categoria',
@@ -40,8 +39,8 @@ export class NoticiaCategoriaComponent implements OnInit {
   }
 
   highlights: Noticia[] = []
-  currentSlide = 0;
-  interval: any;
+  currentSlide = 0
+  interval: any
 
   isLoading: boolean = false
 
@@ -59,34 +58,34 @@ export class NoticiaCategoriaComponent implements OnInit {
       this.isLoading = false
     })
 
-    this.startAutoSlide();
+    this.startAutoSlide()
   }
 
   nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.highlights.length;
-    this.updateCarousel();
+    this.currentSlide = (this.currentSlide + 1) % this.highlights.length
+    this.updateCarousel()
   }
 
   prevSlide() {
-    this.currentSlide = (this.currentSlide - 1 + this.highlights.length) % this.highlights.length;
-    this.updateCarousel();
+    this.currentSlide = (this.currentSlide - 1 + this.highlights.length) % this.highlights.length
+    this.updateCarousel()
   }
 
   updateCarousel() {
-    const container = document.querySelector('.noticia-categoria__carousel-container') as HTMLElement;
-    const items = container.children;
-    const currentItem = items[this.currentSlide] as HTMLElement;
+    const container = document.querySelector('.noticia-categoria__carousel-container') as HTMLElement
+    const items = container.children
+    const currentItem = items[this.currentSlide] as HTMLElement
 
-    const itemWidth = currentItem.getBoundingClientRect().width;
+    const itemWidth = currentItem.getBoundingClientRect().width
 
-    const offset = -(this.currentSlide * itemWidth);
-    container.style.transform = `translateX(${offset}px)`;
+    const offset = -(this.currentSlide * itemWidth)
+    container.style.transform = `translateX(${offset}px)`
   }
 
   startAutoSlide() {
     this.interval = setInterval(() => {
-      this.nextSlide();
-    }, 5000);
+      this.nextSlide()
+    }, 5000)
   }
 
   filtrarNoticias(): void {

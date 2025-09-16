@@ -1,5 +1,5 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, ViewEncapsulation } from '@angular/core'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-spinner',
@@ -12,6 +12,6 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class SpinnerComponent {
-    @Input() isLoading: boolean = false;
+    @Input() isLoading: boolean = false
 
 }

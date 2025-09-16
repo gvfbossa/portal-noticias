@@ -130,7 +130,7 @@ button:disabled {
   margin-bottom: 1rem;
   background-color: #f5f5f5;
   border-radius: 0.8rem;
-  box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.05);
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.05);
 }
 
 .ad-item__info {
@@ -177,4 +177,68 @@ button:disabled {
   text-align: center;
   margin-top: 2rem;
   color: #777;
+}
+
+@media (max-width: 768px) {
+  .cadastro-noticia-container {
+    max-width: 95vw;
+    display: block;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-top: 0rem;
+    padding-top: 0rem;
+    margin-bottom: 0rem;
+    padding-bottom: 0rem;
+  }
+
+  form {
+    max-width: 80vw;
+  }
+
+  .cadastro-noticia-container h2 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .form-group {
+    padding: 0rem;
+    margin: 1rem;
+    margin-left: 0rem;
+    width: 100%;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .form-group select {
+    padding: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  button {
+    padding: 0.5rem;
+  }
+
+  .form-group textarea {
+    height: 5rem;
+  }
+
+  .news-list-container {
+    margin-top: 2rem;
+    max-height: 20rem;
+    padding-left: 0rem;
+    max-width: 95vw;
+  }
+
+  .news-list-container ul li {
+    font-size: 0.8rem;
+  }
+
+  .ad-item__position strong {
+    font-size: 1rem;
+  }
 }

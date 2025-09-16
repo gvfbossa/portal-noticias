@@ -1,10 +1,9 @@
 <div class="cadastro-noticia-container">
   <h1>Gerenciar Notícias</h1>
   <div class="form-and-list">
-
     <div class="form-container">
       <form (ngSubmit)="onSubmit()" #noticiaForm="ngForm">
-        <h2>{{ noticia.id ? 'Editar Notícia' : 'Cadastrar Notícia' }}</h2>
+        <h2>{{ noticia.id ? "Editar Notícia" : "Cadastrar Notícia" }}</h2>
         <div class="form-group">
           <label for="type">Tipo</label>
           <select id="type" [(ngModel)]="noticia.type" name="type" required>
@@ -16,8 +15,16 @@
 
         <div class="form-group">
           <label for="category">Categoria</label>
-          <select id="category" [(ngModel)]="noticia.category" name="category" required>
-            <option *ngFor="let categoria of categorias" [value]="categoria.value">
+          <select
+            id="category"
+            [(ngModel)]="noticia.category"
+            name="category"
+            required
+          >
+            <option
+              *ngFor="let categoria of categorias"
+              [value]="categoria.value"
+            >
               {{ categoria.name }}
             </option>
           </select>
@@ -25,48 +32,95 @@
 
         <div class="form-group">
           <label for="headline">Título</label>
-          <input type="text" id="headline" [(ngModel)]="noticia.headline" name="headline" required />
+          <input
+            type="text"
+            id="headline"
+            [(ngModel)]="noticia.headline"
+            name="headline"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="subtitle">Subtítulo</label>
-          <input type="text" id="subtitle" [(ngModel)]="noticia.subtitle" name="subtitle" />
+          <input
+            type="text"
+            id="subtitle"
+            [(ngModel)]="noticia.subtitle"
+            name="subtitle"
+          />
         </div>
 
         <div class="form-group">
           <label for="summary">Resumo</label>
-          <textarea id="summary" [(ngModel)]="noticia.summary" name="summary"></textarea>
+          <textarea
+            id="summary"
+            [(ngModel)]="noticia.summary"
+            name="summary"
+          ></textarea>
         </div>
 
         <div class="form-group">
           <label for="image">Imagem</label>
-          <input type="file" id="image" (change)="onImageChange($event)" name="image" required />
+          <input
+            type="file"
+            id="image"
+            (change)="onImageChange($event)"
+            name="image"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="fullText">Texto Completo</label>
-          <textarea id="fullText" [(ngModel)]="noticia.fullText" name="fullText" required></textarea>
+          <textarea
+            id="fullText"
+            [(ngModel)]="noticia.fullText"
+            name="fullText"
+            required
+          ></textarea>
         </div>
 
-        <button type="submit" [disabled]="!noticiaForm.form.valid || isSubmitting">
-          {{ isSubmitting ? 'Enviando...' : (noticia.id ? 'Atualizar Notícia' : 'Cadastrar Notícia') }}
+        <button
+          type="submit"
+          [disabled]="!noticiaForm.form.valid || isSubmitting"
+        >
+          {{
+            isSubmitting
+              ? "Enviando..."
+              : noticia.id
+              ? "Atualizar Notícia"
+              : "Cadastrar Notícia"
+          }}
         </button>
-        <button type="button" class="clear" (click)="onClear()" [disabled]="isSubmitting">
+        <button
+          type="button"
+          class="clear"
+          (click)="onClear()"
+          [disabled]="isSubmitting"
+        >
           Limpar Formulário
         </button>
-        <button class="delete" type="button" *ngIf="noticia.id" (click)="onDelete()" [disabled]="isSubmitting">
+        <button
+          class="delete"
+          type="button"
+          *ngIf="noticia.id"
+          (click)="onDelete()"
+          [disabled]="isSubmitting"
+        >
           Apagar Notícia
         </button>
       </form>
     </div>
 
-    
     <div class="news-list-container">
       <h2>Notícias Cadastradas</h2>
       <ul>
         <li *ngFor="let noticia of noticias" (click)="editNoticia(noticia)">
           <span>{{ noticia.headline }} - </span>
-          <span class="news-list-container__date">{{ noticia.date | date: 'dd/MM/yyyy' }}</span>
+          <span class="news-list-container__date">{{
+            noticia.date | date : "dd/MM/yyyy"
+          }}</span>
         </li>
       </ul>
     </div>
@@ -76,20 +130,28 @@
 <div class="cadastro-noticia-container">
   <h1>Gerenciar Anúncios</h1>
   <div class="form-and-list">
-
-    <!-- Formulário -->
     <div class="form-container">
       <form (ngSubmit)="onSubmitAnuncio()" #anuncioForm="ngForm">
         <h2>Cadastrar Anúncio</h2>
 
         <div class="form-group">
           <label for="url">Link do Anúncio</label>
-          <input type="text" id="url" [(ngModel)]="anuncio.url" name="url" required />
+          <input
+            type="text"
+            id="url"
+            [(ngModel)]="anuncio.url"
+            name="url"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="position">Posição do Anúncio</label>
-          <select id="position" [(ngModel)]="anuncio.position" name="position" required>
+          <select
+            id="position"
+            [(ngModel)]="anuncio.position"
+            name="position"
+            required>
             <option *ngFor="let pos of adPositions" [value]="pos">
               {{ getAdPositionLabel(pos) }}
             </option>
@@ -98,47 +160,62 @@
 
         <div class="form-group">
           <label for="dataExpiracao">Data de Expiração</label>
-          <input type="date" id="dataExpiracao" [(ngModel)]="anuncio.dataExpiracao" name="dataExpiracao" required />
+          <input
+            type="date"
+            id="dataExpiracao"
+            [(ngModel)]="anuncio.dataExpiracao"
+            name="dataExpiracao"
+            required
+          />
         </div>
 
         <div class="form-group">
           <label for="imagemAnuncio">Imagem do Anúncio</label>
-          <input type="file" id="imagemAnuncio" (change)="onAnuncioImageChange($event)" name="imagemAnuncio" required />
+          <input
+            type="file"
+            id="imagemAnuncio"
+            (change)="onAnuncioImageChange($event)"
+            name="imagemAnuncio"
+            required
+          />
         </div>
 
         <button type="submit" [disabled]="isSubmitting">
-          {{ isSubmitting ? 'Enviando...' : 'Cadastrar Anúncio' }}
+          {{ isSubmitting ? "Enviando..." : "Cadastrar Anúncio" }}
         </button>
       </form>
     </div>
 
     <div class="news-list-container">
-  <h2>Anúncios Cadastrados</h2>
-  <ul class="ad-list">
-    <li *ngFor="let anuncio of anuncios" class="ad-item">
-      <div class="ad-item__info">
-        <div class="ad-item__position">
-          <strong>{{ getAdPositionLabel(anuncio.position) }}</strong>
-        </div>
-        <div class="ad-item__url">
-          <a [href]="anuncio.url" target="_blank">{{ anuncio.url }}</a>
-        </div>
-        <div class="ad-item__date">
-          Expira em {{ anuncio.dataExpiracao | date: 'dd/MM/yyyy' }}
-        </div>
-      </div>
-      <div class="ad-item__actions">
-        <button (click)="onDeleteAnuncio(anuncio.id)" class="delete-anuncio">Apagar</button>
-      </div>
-    </li>
-  </ul>
+      <h2>Anúncios Cadastrados</h2>
+      <ul class="ad-list">
+        <li *ngFor="let anuncio of anuncios" class="ad-item">
+          <div class="ad-item__info">
+            <div class="ad-item__position">
+              <strong>{{ getAdPositionLabel(anuncio.position) }}</strong>
+            </div>
+            <div class="ad-item__url">
+              <a [href]="anuncio.url" target="_blank">{{ anuncio.url }}</a>
+            </div>
+            <div class="ad-item__date">
+              Expira em {{ anuncio.dataExpiracao | date : "dd/MM/yyyy" }}
+            </div>
+          </div>
+          <div class="ad-item__actions">
+            <button
+              (click)="onDeleteAnuncio(anuncio.id)"
+              class="delete-anuncio"
+            >
+              Apagar
+            </button>
+          </div>
+        </li>
+      </ul>
 
-    <span class="anuncios__vazio" *ngIf="anuncios.length === 0">
-      Não há anúncios cadastrados
-    </span>
-  </div>
-
-
+      <span class="anuncios__vazio" *ngIf="anuncios.length === 0">
+        Não há anúncios cadastrados
+      </span>
+    </div>
   </div>
 </div>
 <app-spinner [isLoading]="isLoading"></app-spinner>

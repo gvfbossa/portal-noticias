@@ -18,7 +18,7 @@ import { SpinnerComponent } from '../spinner/spinner.component'
 })
 
 export class LoginComponent {
-  isProd: boolean = true;
+  isProd: boolean = true
   username: string = ''
   password: string = ''
   isSubmitting = false
@@ -55,7 +55,7 @@ export class LoginComponent {
     else {
       setTimeout(() => {
         this.isLoading = false
-      }, 3000);
+      }, 3000)
       this.router.navigate(['/gerenciar-noticias'])
     }
   }

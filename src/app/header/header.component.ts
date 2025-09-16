@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
@@ -15,10 +15,12 @@ import { NoticiaService } from '../services/noticia.service'
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router, private noticiaService: NoticiaService) {}
+  constructor(private router: Router, private noticiaService: NoticiaService, private eRef: ElementRef) {}
 
   isMenuOpen = false
 
+  @ViewChild('menu') menu!: ElementRef
+  
   currentDateTime: string = ''
 
   searchQuery: string = ''
@@ -26,8 +28,8 @@ export class HeaderComponent implements OnInit {
   noticias: any[] = []
 
   categories: { 
-    name: string; 
-    route: string; 
+    name: string 
+    route: string 
     subcategories?: { name: string; route: string }[] 
   }[] = [
     { 
@@ -88,6 +90,20 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    if (this.isMenuOpen) {
+      const clickedInsideMenu = this.menu?.nativeElement.contains(event.target)
+      const clickedOnIcon = this.eRef.nativeElement
+        .querySelector('.header__menu-icon')
+        ?.contains(event.target)
+
+      if (!clickedInsideMenu && !clickedOnIcon) {
+        this.isMenuOpen = false
+      }
+    }
   }
 
   updateDateTime() {

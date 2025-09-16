@@ -1,26 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { PagedResponse } from '../paged-response.model';
-import { Noticia } from '../../models/noticia.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core'
+import { Observable, of } from 'rxjs'
+import { PagedResponse } from '../../models/paged-response.model'
+import { Noticia } from '../../models/noticia.model'
+import { HttpClient } from '@angular/common/http'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoticiaService {
 
-  noticias = [];
+  noticias = []
   page: number = 0
   size: number = 24
-  apiUrl = `${environment.apiBaseUrl}/api/noticias/todas`;
+  apiUrl = `${environment.apiBaseUrl}/api/noticias/todas`
 
   constructor(private http: HttpClient) {}
 
   noticiasArrayMock = {
     "noticias": [
       {
-        "id": 0,
+        "id": 20,
         "type": "HIGHLIGHT",
         "category": "GERAL",
         "headline": "Como publicar uma Notícia ou Anúncio em seu site?",
@@ -240,7 +240,7 @@ export class NoticiaService {
         "date": "2024-12-15T11:00:00Z"
       }
     ]
-  };
+  }
 
   getNoticiasMock(): Observable<PagedResponse<Noticia>> {
     const pagedResponse: PagedResponse<Noticia> = {
@@ -260,13 +260,13 @@ export class NoticiaService {
       number: this.page,
       size: this.size,
       last: false
-    };
+    }
 
-    return of(pagedResponse);
+    return of(pagedResponse)
   }
 
   getNoticias(page: number = 0, size: number = 24): Observable<PagedResponse<Noticia>> {
-    return this.http.get<PagedResponse<Noticia>>(`${this.apiUrl}?page=${page}&size=${size}`);
+    return this.http.get<PagedResponse<Noticia>>(`${this.apiUrl}?page=${page}&size=${size}`)
   }
 
 }
