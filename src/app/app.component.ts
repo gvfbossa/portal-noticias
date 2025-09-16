@@ -20,6 +20,7 @@ import { ToastService } from './services/toast.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements AfterViewInit {
+  //DEPLOY: npm run build
   title = 'portal-noticias-frontend';
 
   @ViewChild('toastComp') toastComp!: ToastComponent;
