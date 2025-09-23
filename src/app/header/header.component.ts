@@ -15,48 +15,53 @@ import { NoticiaService } from '../services/noticia.service'
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router, private noticiaService: NoticiaService, private eRef: ElementRef) {}
+  constructor(private router: Router, private noticiaService: NoticiaService, private eRef: ElementRef) { }
 
   isMenuOpen = false
 
   @ViewChild('menu') menu!: ElementRef
-  
+
   currentDateTime: string = ''
 
   searchQuery: string = ''
   filteredNoticias: any[] = []
   noticias: any[] = []
 
-  categories: { 
-    name: string 
-    route: string 
-    subcategories?: { name: string; route: string }[] 
+  categories: {
+    name: string
+    route: string
+    subcategories?: { name: string; route: string }[]
   }[] = [
-    { 
-      name: 'NOTÍCIAS', 
-      route: '', 
-      subcategories: [
-        { name: 'Geral', route: 'noticia-categoria/geral' },
-        { name: 'Política', route: 'noticia-categoria/politica' },
-        { name: 'Policial', route: 'noticia-categoria/policial' },
-        { name: 'Esportes', route: 'noticia-categoria/esportes' },
-        { name: 'Cultura', route: 'noticia-categoria/cultura' },
-      ]
-    },
-    { name: 'EMPREGO', route: 'noticia-categoria/emprego'},
-    { name: 'ACHADOS E PERDIDOS', route: 'noticia-categoria/achadosperdidos'},
-    { name: 'PRODUTOS E SERVIÇOS', route: 'noticia-categoria/anuncios'},
-    { name: 'RECLAMAÇÕES', route: 'noticia-categoria/reclamacoes'},
-  ]
-  
-  
+      {
+        name: 'NOTÍCIAS',
+        route: '',
+        subcategories: [
+          { name: 'Geral', route: 'noticia-categoria/geral' },
+          { name: 'Política', route: 'noticia-categoria/politica' },
+          { name: 'Policial', route: 'noticia-categoria/policial' },
+          { name: 'Esportes', route: 'noticia-categoria/esportes' },
+          { name: 'Cultura', route: 'noticia-categoria/cultura' },
+        ]
+      },
+      { name: 'EMPREGO', route: 'noticia-categoria/emprego' },
+      { name: 'ACHADOS E PERDIDOS', route: 'noticia-categoria/achadosperdidos' },
+      { name: 'PRODUTOS E SERVIÇOS', route: 'noticia-categoria/anuncios' },
+      { name: 'RECLAMAÇÕES', route: 'noticia-categoria/reclamacoes' },
+    ]
+
+
   ngOnInit(): void {
     this.updateDateTime()
-    
+
     this.noticiaService.getNoticiasMock().subscribe(noticias => {
 
       this.noticias = noticias.content
     })
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.updateDateTime()
   }
 
   navigateTo(route: any, toggle: boolean) {
@@ -86,7 +91,7 @@ export class HeaderComponent implements OnInit {
 
   focusOnSearch() {
     document.getElementById('search-box')?.focus()
-  }    
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen
@@ -108,16 +113,27 @@ export class HeaderComponent implements OnInit {
 
   updateDateTime() {
     const now = new Date()
-    this.currentDateTime = this.capitalizeWords(
-      now.toLocaleString('pt-BR', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    )
+    const isMobile = window.innerWidth <= 768 // define o breakpoint mobile
+
+    if (isMobile) {
+      const weekdaysShort = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+      const dayName = weekdaysShort[now.getDay()]
+      const day = String(now.getDate()).padStart(2, '0')
+      const month = String(now.getMonth() + 1).padStart(2, '0')
+      const year = now.getFullYear()
+      this.currentDateTime = `${dayName}, ${day}/${month}/${year}`
+    } else {
+      this.currentDateTime = this.capitalizeWords(
+        now.toLocaleString('pt-BR', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      )
+    }
   }
-  
+
   capitalizeWords(input: string): string {
     return input
       .split(' ')

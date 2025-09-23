@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { ThumbnailDestaqueComponent } from '../components/thumbnail-destaque/thumbnail-destaque.component'
@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
 import { AddsComponent } from "../components/adds/adds.component"
 import { Noticia } from '../../models/noticia.model'
 import { SpinnerComponent } from "../components/spinner/spinner.component"
+import { ThumbnailDestaqueSmallComponent } from "../components/thumbnail-destaque-small/thumbnail-destaque-small.component";
 
 @Component({
   selector: 'app-main',
@@ -19,7 +20,8 @@ import { SpinnerComponent } from "../components/spinner/spinner.component"
     ThumbnailNoticiaComponent,
     AddsComponent,
     SpinnerComponent,
-],
+    ThumbnailDestaqueSmallComponent
+  ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -28,6 +30,8 @@ export class MainComponent implements OnInit {
 
   highlights: Noticia[] = []
   commonNews: Noticia[] = []
+  latestCommonNews: Noticia[] = []
+
   currentSlide = 0
   interval: any
 
@@ -35,23 +39,27 @@ export class MainComponent implements OnInit {
 
   @ViewChild('highlightScroll', { static: true }) highlightScroll!: ElementRef
   indicatorPosition = 0
+  firstHighlight: Noticia = new Noticia
 
-  constructor(private router: Router, private noticiaService: NoticiaService) {}
+  constructor(private router: Router, private noticiaService: NoticiaService) { }
 
   ngOnInit(): void {
     this.isLoading = true
     this.noticiaService.getNoticiasMock().subscribe({
       next: (response) => {
         const noticias = response.content
-  
+
         if (Array.isArray(noticias)) {
           this.highlights = noticias
             .filter((news) => news.type === 'HIGHLIGHT')
             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-          
+
           this.commonNews = noticias
             .filter((news) => news.type === 'COMMON')
             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+          this.latestCommonNews = this.commonNews.slice(0, 6);
+          this.commonNews = this.commonNews.slice(6, this.commonNews.length - 1);
         }
       },
       error: (err) => {
@@ -93,10 +101,15 @@ export class MainComponent implements OnInit {
   }
 
   goToNoticia(id: number): void {
-    let noticia = this.highlights.concat(this.commonNews).find((news: Noticia) => news.id === id)
+    let noticia = this.highlights
+      .concat(this.commonNews)
+      .concat(this.latestCommonNews)
+      .find((news: Noticia) => news.id === id)
+
     if (noticia) {
       this.router.navigate(['/noticia', id], { state: { noticia } })
     }
+    window.scrollTo(0,0)
   }
 
 }

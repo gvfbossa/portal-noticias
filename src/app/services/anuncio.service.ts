@@ -51,8 +51,8 @@ export class AnuncioService {
   getAll(headers?: HttpHeaders): Observable<Anuncio[]> {
     if (this.portfolio) {
       return of<Anuncio[]>([
-        { id: 1, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/anuncio2.png', position: 'MAIN_TOP', dataExpiracao: '2030-12-31' },
-        { id: 2, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/anuncio1.png', position: 'MAIN_MIDDLE', dataExpiracao: '2030-12-31' },
+        { id: 1, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/addBannerTop.png', position: 'MAIN_TOP', dataExpiracao: '2030-12-31' },
+        { id: 2, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/addBannerMiddle.png', position: 'MAIN_MIDDLE', dataExpiracao: '2030-12-31' },
         { id: 3, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/anuncio_bws_1.jpeg', position: 'NEWS_RIGHT', dataExpiracao: '2030-12-31' }
       ] as const).pipe(delay(300))
     }

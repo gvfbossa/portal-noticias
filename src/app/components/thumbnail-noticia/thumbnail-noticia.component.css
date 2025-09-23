@@ -1,108 +1,121 @@
+/* ==================== CARD BASE ==================== */
 .news {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: #fff;
-  border: 0.1rem solid #ddd;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  width: 98%;
-  padding: 0.6rem;
-  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
-  max-height: 25rem;
-  min-height: 25rem;
+  width: 100%;
+  min-height: 26rem;
+  max-height: 26rem;
+  padding: 0.8rem; /* espaço entre borda do card e conteúdo */
+  box-sizing: border-box;
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.08);
 }
 
 .news:hover {
-  transform: scale(1.025);
+  transform: translateY(-0.25rem);
+  box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.15);
 }
 
+/* ==================== IMAGEM ==================== */
 .news__image {
   width: 100%;
-  max-width: 15rem;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  background-color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
+  height: 14rem;               /* altura fixa */
+  object-fit: cover;           /* cobre sem distorcer */
+  background-color: #eaeaea;
+  border-radius: 0.45rem;      /* bordas arredondadas internas */
+  display: block;
+  margin: 0 0 0.6rem 0;        /* espaço entre imagem e conteúdo */
+  border-bottom: 1px solid #f1f1f1; /* divisor visual */
+  font-size: 2rem;             /* placeholder (sem imagem) */
   font-weight: bold;
-  color: #000;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  color: #666;
+  text-align: center;
+  line-height: 14rem;          /* centraliza o "I" do placeholder */
 }
 
+/* ==================== CONTEÚDO ==================== */
 .news__content {
-  text-align: center;
+  flex: 1;
+  padding: 0 0.25rem; /* ajustado por causa do padding no .news */
+  display: flex;
+  flex-direction: column;
 }
 
 .news__headline {
   font-size: 1.2rem;
-  font-weight: bold;
-  color: #000;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 0.4rem 0;
+  margin-top: 0.5rem;
+  line-height: 1.3;
 }
 
 .news__subtitle {
   font-size: 1rem;
-  color: #666;
-  text-align: center;
-  hyphens: auto;
-  margin: 0;
+  color: #555;
+  margin: 0 0 0.6rem 0;
+  margin-top: 0.5rem;
+  line-height: 1.25;
+  flex-grow: 1;
 }
 
 .news__date {
-  font-size: 0.9rem;
-  color: #999;
-  margin-top: 0rem;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: auto;
+  text-align: right; 
 }
 
 @media (max-width: 768px) {
   .news {
     display: flex;
-    flex-direction: column; /* Empilha os itens verticalmente */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    width: 100%; /* Ajusta a largura para ocupar o espaço disponível */
-    padding: 0.5rem; /* Margem interna */
+    flex-direction: row;
+    align-items: flex-start;
     height: auto;
-    margin: 0; /* Remove margens externas extras */
-    box-sizing: border-box; /* Inclui padding na largura/altura */
-    max-height: 14rem;
-    min-height: 14rem;
+    min-height: auto;
+    max-height: none;
+    padding: 0.45rem;
+    box-sizing: border-box;
+    gap: 0.2rem;
   }
 
   .news__image {
-    width: 6.5rem; /* Largura fixa */
-    height: 6.5rem; /* Altura fixa */
-    margin-bottom: 0.5rem; /* Espaçamento inferior */
-    border-radius: 0.5rem; /* Arredondamento */
-    background-color: #e0e0e0; /* Cor de fundo para teste */
+    flex: 0 0 5rem;
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 0.45rem;
+    display: block;
+    line-height: 5rem; /* centraliza placeholder "I" */
+    margin: 0;
+  }
+
+  .news__content {
+    flex: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 5rem; /* 🔑 faz o container ter a mesma altura da imagem */
   }
 
   .news__headline {
-    font-size: 0.8rem; /* Tamanho maior para o título */
-    font-weight: bold;
-    text-align: center; /* Centraliza o texto */
-    margin: 0.5rem 0; /* Margem superior e inferior */
-    color: #000; /* Cor do título */
+    font-size: 0.9rem;
+    margin: 0 0 0.2rem 0;
+    line-height: 1.2;
   }
 
   .news__subtitle {
-    display: none; /* Esconde o subtítulo */
-    margin: 0; /* Remove margens */
-    padding: 0; /* Remove paddings */
+    display: none;
   }
 
   .news__date {
-    font-size: 0.7em; /* Tamanho menor para a data */
-    text-align: center; /* Centraliza o texto */
-    margin-top: 0.5rem; /* Margem superior */
-    color: #999;
-    align-self: center;
+    font-size: 0.7rem;
+    color: #888;
+    text-align: right;
+    margin-top: auto;
   }
 }

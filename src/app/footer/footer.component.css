@@ -1,10 +1,10 @@
 .footer {
   bottom: 0;
   display: flex;
-  background-color: white;
   width: 100%;
   font-size: 1rem;
-  color: #012448;
+  color: #9e9e9e;
+  background-color: #1e3a8a;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.4);
 }
 
@@ -26,12 +26,12 @@
 
 .footer__bws a {
   text-decoration: none;
-  color: #0052cc;
+  color: white;
 }
 
 .footer__empresa a {
   text-decoration: none;
-  color: #012448;
+  color: white;
 }
 
 .footer__empresa a:hover {

@@ -9,7 +9,7 @@
         <ul>
           <li *ngFor="let category of categories" class="header__category">
             <a (click)="navigateTo(category.route, false)" class="header__category-link">
-              <span class="header__category-pipe">|</span>{{ category.name }}<span class="header__category-pipe">|</span>
+              <span class="header__category-pipe"></span>{{ category.name }}<span class="header__category-pipe"></span>
             </a>
             <ul *ngIf="category.subcategories" class="header__subcategory-list">
               <li *ngFor="let sub of category.subcategories" class="header__subcategory-item">

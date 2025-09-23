@@ -1,34 +1,44 @@
-
 <main class="main">
   <app-adds adPosition="MAIN_TOP"></app-adds>
   <section class="main__highlights">
     <div class="main__section-title-container">
-        <h2 class="main__section-title">Destaques</h2>
+      <h2 class="main__section-title">Destaques</h2>
     </div>
-    <div class="main__highlights">
-      <div class="main__carousel">
-          <div class="main__carousel-container">
-              <app-thumbnail-destaque
-                  *ngFor="let news of highlights"
-                  [noticia]="news"
-                  class="main__carousel-item"
-                  (click)="goToNoticia(news.id)"> 
-              </app-thumbnail-destaque>
-          </div>
-          <button class="main__carousel-btn main__carousel-btn--prev" (click)="prevSlide()">&#10094;</button>
-          <button class="main__carousel-btn main__carousel-btn--next" (click)="nextSlide()">&#10095;</button>
+
+    <div class="main__highlights-layout">
+      <div class="main__carousel" aria-label="carousel-destaques">
+        <div class="main__carousel-container">
+          <app-thumbnail-destaque
+            *ngFor="let news of highlights"
+            [noticia]="news"
+            class="main__carousel-item"
+            (click)="goToNoticia(news.id)">
+          </app-thumbnail-destaque>
+        </div>
+
+        <button class="main__carousel-btn main__carousel-btn--prev" (click)="prevSlide()">&#10094;</button>
+        <button class="main__carousel-btn main__carousel-btn--next" (click)="nextSlide()">&#10095;</button>
       </div>
-  </div>
-</section>
+
+      <div class="main__grid-side" aria-label="grid-destaques">
+        <app-thumbnail-destaque-small
+          *ngFor="let news of latestCommonNews"
+          [noticia]="news"
+          class="main__grid-card"
+          (click)="goToNoticia(news.id)">
+        </app-thumbnail-destaque-small>
+      </div>
+    </div>
+  </section>
 
   <div class="main__adds">
     <app-adds adPosition="MAIN_MIDDLE"></app-adds>
   </div>
-  
-  <section class="main__common-news">
-    <div class="main__section-title-container">
-      <h2 class="main__section-title">Últimas Notícias</h2>
+
+  <div class="main__section-title-container">
+      <h2 class="main__section-title main__section-title-common">Últimas Notícias</h2>
     </div>
+  <section class="main__common-news">
     <div class="main__news-grid">
       <a *ngFor="let news of commonNews" (click)="goToNoticia(news.id)">
         <app-thumbnail-noticia [noticia]="news"></app-thumbnail-noticia>
@@ -36,5 +46,4 @@
     </div>
   </section>
 </main>
-<!--<app-anuncio></app-anuncio>-->
 <app-spinner [isLoading]="isLoading"></app-spinner>

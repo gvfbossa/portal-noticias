@@ -1,34 +1,20 @@
 <div class="noticia-categoria">
-    <app-adds></app-adds>
-    <div *ngIf="noticiasFiltradas.length > 0; else semNoticias">
-        
-        <div class="noticia-categoria__title-container">
-            <h2 class="noticia-categoria__title">Notícias sobre {{ getNomeCategoria() }}</h2>
-        </div>
+    <app-adds adPosition="MAIN_TOP"></app-adds>
 
-        <div class="noticia-categoria__carousel">
-            <div class="noticia-categoria__carousel-container">
-                <app-thumbnail-destaque
-                *ngFor="let noticia of highlights"
-                    [noticia]="noticia"
-                    class="noticia-categoria__carousel-item"
-                    (click)="goToNoticia(noticia.id)">
-                </app-thumbnail-destaque>
-            </div>
-            <button class="noticia-categoria__carousel-btn noticia-categoria__carousel-btn--prev" (click)="prevSlide()">&#10094;</button>
-            <button class="noticia-categoria__carousel-btn noticia-categoria__carousel-btn--next" (click)="nextSlide()">&#10095;</button>
-        </div>
+    <h2  *ngIf="noticiasFiltradas.length > 0; else semNoticias" class="noticia-categoria__title">Notícias sobre {{ getNomeCategoria() }}</h2>
 
+    <div>
         <div class="noticia-categoria__thumbnails">
             <a *ngFor="let noticia of noticiasFiltradas" (click)="goToNoticia(noticia.id)">
-                <app-thumbnail-noticia *ngIf="noticia.type === 'COMMON'" [noticia]="noticia"></app-thumbnail-noticia>
+                <app-thumbnail-noticia [noticia]="noticia"></app-thumbnail-noticia>
             </a>
         </div>
     </div>
-    <div>
-        <ng-template class="noticia-categoria__title-container" #semNoticias>
-            <p class="noticia-categoria__title">Nenhuma notícia encontrada para a categoria {{ getNomeCategoria() }}.</p>
-        </ng-template>
-    </div>
+
+    <ng-template #semNoticias>
+        <p class="noticia-categoria__empty_categoria-title">
+            Nenhuma notícia encontrada para a categoria {{ getNomeCategoria() }}.
+        </p>
+    </ng-template>
 </div>
 <app-spinner [isLoading]="isLoading"></app-spinner>

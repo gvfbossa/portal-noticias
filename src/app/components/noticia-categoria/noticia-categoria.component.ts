@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router'
 import { NoticiaService } from '../../services/noticia.service'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
-import { ThumbnailDestaqueComponent } from "../thumbnail-destaque/thumbnail-destaque.component"
 import { ThumbnailNoticiaComponent } from "../thumbnail-noticia/thumbnail-noticia.component"
 import { AddsComponent } from "../adds/adds.component"
 import { Noticia } from '../../../models/noticia.model'
@@ -14,7 +13,6 @@ import { SpinnerComponent } from "../spinner/spinner.component"
   standalone: true,
   imports: [
     CommonModule,
-    ThumbnailDestaqueComponent,
     ThumbnailNoticiaComponent,
     AddsComponent,
     SpinnerComponent

@@ -9,7 +9,7 @@
   align-items: center;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   opacity: 1;
-  background-color: white;
+  background-color: #1e3a8a;
   max-height: 4rem;
 }
 
@@ -26,7 +26,7 @@
 
 .header__logo-image {
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #1e3a8a;
   height: 6rem;
   width: auto;
   margin-top: 0px;
@@ -70,7 +70,7 @@
 .header__datetime {
   margin-bottom: 0.5rem;
   font-size: 1rem;
-  color: #0052cc;
+  color: #fff;
 }
 
 .header__search-container {
@@ -92,7 +92,7 @@
 .material-icons {
   cursor: pointer;
   font-size: 2rem;
-  color: #0052cc;
+  color: #fff;
   margin-left: 0.5rem;
 }
 
@@ -141,14 +141,14 @@
   font-size: 1.1rem;
   cursor: pointer;
   text-decoration: none;
-  color: #0052cc;
+  color: black;
 }
 
 .header__category {
   font-size: 1.1rem;
   cursor: pointer;
   position: relative;
-  color: #0052cc;
+  color: #fff;
 }
 
 .header__category-pipe {
@@ -156,12 +156,12 @@
 }
 
 .header__category-link:hover {
-  color: #012448;
+  color: #0052cc;
 }
 
 a {
   text-decoration: none;
-  color: #0052cc;
+  color: #fff;
 }
 
 .header__subcategory-list {
@@ -186,6 +186,10 @@ a {
   border-bottom: 0.0625rem solid #f0f0f0;
 }
 
+.header__subcategory-link {
+  color: #012448;
+}
+
 .header__subcategory-link:hover {
   color: gray;
 }
@@ -198,7 +202,7 @@ a {
 .header__menu-icon {
   cursor: pointer;
   font-size: 2rem;
-  color: #0052cc;
+  color: #fff;
   margin-left: 1rem;
 }
 

@@ -15,7 +15,7 @@ export class NoticiaService {
   size: number = 24
   apiUrl = `${environment.apiBaseUrl}/api/noticias/todas`
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   noticiasArrayMock = {
     "noticias": [
@@ -238,6 +238,17 @@ export class NoticiaService {
         "image": "assets/images/noticia18_leitura.jpg",
         "fullText": "Um novo programa de incentivo à leitura foi lançado com o objetivo de promover a literatura entre os jovens. A iniciativa inclui a distribuição de livros em escolas e a realização de atividades culturais que incentivem a leitura e a escrita. Especialistas afirmam que a leitura é fundamental para o desenvolvimento cognitivo e social, e o programa visa proporcionar aos estudantes oportunidades para expandir seus horizontes literários.\n\nAs atividades incluem encontros com autores, oficinas de criação literária e clubes de leitura, criando um ambiente que estimula o interesse pela literatura. Os organizadores acreditam que essa é uma maneira eficaz de formar novos leitores e fomentar a cultura literária, além de contribuir para a formação de cidadãos mais críticos e engajados. A expectativa é que o programa seja um sucesso e inspire outras iniciativas em todo o país.",
         "date": "2024-12-15T11:00:00Z"
+      },
+      {
+        "id": 21,
+        "type": "COMMON",
+        "category": "GERAL",
+        "headline": "Nova praça é inaugurada no centro da cidade",
+        "subtitle": "Espaço conta com áreas verdes, pista de caminhada e playground para crianças.",
+        "summary": "A praça busca oferecer lazer, esporte e convivência para moradores e visitantes.",
+        "image": "assets/images/noticia19_praca.jpg",
+        "fullText": "A prefeitura inaugurou neste fim de semana uma nova praça no centro da cidade, trazendo um espaço moderno e acessível para lazer e convivência. O local conta com pista de caminhada, playground para crianças, academia ao ar livre e áreas verdes com árvores nativas.\n\nDurante a cerimônia de abertura, autoridades destacaram a importância de investir em espaços públicos que promovam qualidade de vida e bem-estar. A comunidade marcou presença em peso e já começou a aproveitar as novas instalações, que também incluem bancos, wi-fi gratuito e iluminação sustentável. A expectativa é que a praça se torne um ponto de encontro para famílias, jovens e idosos, fortalecendo o sentimento de pertencimento e valorizando a vida urbana.",
+        "date": "2025-02-10T15:00:00Z"
       }
     ]
   }
