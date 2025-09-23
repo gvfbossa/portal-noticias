@@ -1,13 +1,11 @@
-/* CONTAINER CENTRAL DO SOBRE */
 .sobre-wrapper {
-  width: 60%; /* centraliza horizontalmente, igual notícia */
+  width: 60%;
   margin: 6rem auto 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* HEADLINE */
 .sobre__headline {
   font-size: 2.6rem;
   font-weight: 800;
@@ -17,7 +15,6 @@
   text-align: center;
 }
 
-/* SUBTITLE */
 .sobre__subtitle {
   font-size: 1.3rem;
   font-weight: 500;
@@ -28,7 +25,6 @@
   margin-bottom: 4rem;
 }
 
-/* IMAGEM */
 .sobre__logo-container {
   display: flex;
   justify-content: center;
@@ -37,13 +33,12 @@
 .sobre__logo-image {
   max-width: 100%;
   height: auto;
-  max-height: 40rem; /* ocupa mais tela */
+  max-height: 40rem;
   border-radius: 1rem;
   box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   object-fit: cover;
 }
 
-/* TEXTO */
 .sobre__texto {
   font-size: 1.125rem;
   line-height: 1.75;
@@ -56,7 +51,6 @@
   margin-top: 4rem;
 }
 
-/* RESPONSIVO */
 @media (max-width: 1024px) {
   .sobre-wrapper {
     width: 90%;

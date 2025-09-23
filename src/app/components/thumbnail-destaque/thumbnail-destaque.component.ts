@@ -1,7 +1,7 @@
-import { Component,Input } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { Noticia } from '../../../models/noticia.model';
-import { CommonModule } from '@angular/common';
+import { Component,Input } from '@angular/core'
+import { DatePipe } from '@angular/common'
+import { Noticia } from '../../../models/noticia.model'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-thumbnail-destaque',
@@ -14,5 +14,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './thumbnail-destaque.component.css'
 })
 export class ThumbnailDestaqueComponent {
-  @Input() noticia!: Noticia;
+  @Input() noticia!: Noticia
 }

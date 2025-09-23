@@ -1,4 +1,3 @@
-/* ==================== CARD BASE ==================== */
 .news {
   display: flex;
   flex-direction: column;
@@ -10,7 +9,7 @@
   width: 100%;
   min-height: 26rem;
   max-height: 26rem;
-  padding: 0.8rem; /* espaço entre borda do card e conteúdo */
+  padding: 0.8rem;
   box-sizing: border-box;
   box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.08);
 }
@@ -20,27 +19,25 @@
   box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.15);
 }
 
-/* ==================== IMAGEM ==================== */
 .news__image {
   width: 100%;
-  height: 14rem;               /* altura fixa */
-  object-fit: cover;           /* cobre sem distorcer */
+  height: 14rem;
+  object-fit: cover;
   background-color: #eaeaea;
-  border-radius: 0.45rem;      /* bordas arredondadas internas */
+  border-radius: 0.45rem;
   display: block;
-  margin: 0 0 0.6rem 0;        /* espaço entre imagem e conteúdo */
-  border-bottom: 1px solid #f1f1f1; /* divisor visual */
-  font-size: 2rem;             /* placeholder (sem imagem) */
+  margin: 0 0 0.6rem 0;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 2rem;
   font-weight: bold;
   color: #666;
   text-align: center;
-  line-height: 14rem;          /* centraliza o "I" do placeholder */
+  line-height: 14rem;
 }
 
-/* ==================== CONTEÚDO ==================== */
 .news__content {
   flex: 1;
-  padding: 0 0.25rem; /* ajustado por causa do padding no .news */
+  padding: 0 0.25rem;
   display: flex;
   flex-direction: column;
 }
@@ -90,7 +87,7 @@
     object-fit: cover;
     border-radius: 0.45rem;
     display: block;
-    line-height: 5rem; /* centraliza placeholder "I" */
+    line-height: 5rem;
     margin: 0;
   }
 
@@ -99,7 +96,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 5rem; /* 🔑 faz o container ter a mesma altura da imagem */
+    height: 5rem;
   }
 
   .news__headline {

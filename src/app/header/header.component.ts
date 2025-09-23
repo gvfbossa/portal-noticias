@@ -113,7 +113,7 @@ export class HeaderComponent implements OnInit {
 
   updateDateTime() {
     const now = new Date()
-    const isMobile = window.innerWidth <= 768 // define o breakpoint mobile
+    const isMobile = window.innerWidth <= 768
 
     if (isMobile) {
       const weekdaysShort = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']

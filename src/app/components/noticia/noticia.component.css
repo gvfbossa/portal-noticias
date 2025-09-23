@@ -1,18 +1,15 @@
-/* CONTAINER CENTRAL DA NOTÍCIA */
 .noticia-wrapper {
-  position: relative; /* para referência do add sticky/absolute se necessário */
+  position: relative;
   width: 60%;
-  margin: 8rem auto 3rem; /* centraliza horizontalmente */
+  margin: 8rem auto 3rem;
 }
 
-/* COLUNA DO CONTEÚDO */
 .noticia__content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* HEADLINE */
 .noticia__headline {
   font-size: 2.6rem;
   font-weight: 800;
@@ -22,7 +19,6 @@
   margin-bottom: 2rem;
 }
 
-/* IMAGEM */
 .noticia__image {
   max-width: 48rem;
   max-height: 48rem;
@@ -40,7 +36,6 @@
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* SUBTÍTULO */
 .noticia__subtitle {
   font-size: 1.3rem;
   color: #555;
@@ -48,23 +43,20 @@
   margin: 0;
 }
 
-/* DATA */
 .noticia__date {
   font-size: 0.95rem;
   color: #888;
   margin-top: 0.5rem;
 }
 
-/* AD POSICIONADO NA DIREITA DA TELA */
 .noticia__add {
-  position: fixed; /* gruda na viewport */
-  top: 8rem; /* alinhado ao topo do conteúdo */
-  right: 2rem; /* distância da borda direita da tela */
-  width: 22rem; /* largura fixa do anúncio */
-  z-index: 1000; /* garante que fique acima de outros elementos */
+  position: fixed;
+  top: 8rem;
+  right: 2rem;
+  width: 22rem;
+  z-index: 1000;
 }
 
-/* FULL TEXT */
 .noticia__fulltext {
   width: 60%;
   margin: 3rem auto 5rem;
@@ -77,10 +69,9 @@
   text-indent: 2rem;
 }
 
-/* RESPONSIVO */
 @media (max-width: 1024px) {
   .noticia__add {
-    position: static; /* abaixo do conteúdo em mobile */
+    position: static;
     width: 100%;
     margin-top: 2rem;
   }

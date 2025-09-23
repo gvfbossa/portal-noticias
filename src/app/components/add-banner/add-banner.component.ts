@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { AnuncioService } from '../../services/anuncio.service';
-import { Anuncio } from '../../../models/anuncio.model';
-import { CommonModule } from '@angular/common';
+import { AnuncioService } from '../../services/anuncio.service'
+import { Anuncio } from '../../../models/anuncio.model'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-add-banner',
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddBannerComponent implements OnInit {
   
-  temAnuncioMainTop: boolean = false;
+  temAnuncioMainTop: boolean = false
   anuncios: Anuncio[] = []
 
   constructor(private anuncioService: AnuncioService) {}

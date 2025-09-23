@@ -19,7 +19,6 @@
   transform: scale(1.03);
 }
 
-/* container da imagem */
 .highlight__image-container {
   position: relative;
   width: 100%;
@@ -32,15 +31,14 @@
 .highlight__image {
   width: 17.5rem;
   height: 17.5rem;
-  object-fit: cover; /* deixa a imagem bem cortada */
+  object-fit: cover;
   border-radius: 0.5rem;
   display: block;
 }
 
-/* headline sobreposta */
 .highlight__headline {
   position: absolute;
-  bottom: 0; /* fica colado na parte de baixo da imagem */
+  bottom: 0;
   left: 0;
   width: 99%;
   background: rgba(0,0,0,0.5);
@@ -52,7 +50,6 @@
   text-align: center;
 }
 
-/* data no rodapé */
 .highlight__date {
   font-size: 0.9rem;
   color: #999;
@@ -70,7 +67,7 @@
 .main__carousel {
   position: relative;
   overflow: hidden;
-  width: 32rem; /* fixo pro carousel */
+  width: 32rem;
   flex-shrink: 0;
 }
 
@@ -91,10 +88,10 @@
   .highlight {
     flex-direction: column;
     align-items: center;
-    width: 100%; /* ocupa a largura do container */
-    height: auto; /* altura ajusta ao conteúdo */
-    padding: 0.5rem; /* padding interno consistente */
-    margin-bottom: 1rem; /* separa os cards verticalmente */
+    width: 100%;
+    height: auto;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .highlight__image-container {
@@ -105,20 +102,20 @@
   }
 
   .highlight__image {
-    width: 100%; /* ocupa 100% do container */
-    max-width: 15rem; /* não exagera no tamanho */
+    width: 100%;
+    max-width: 15rem;
     max-height: 10rem;
-    height: auto; /* mantém proporção */
+    height: auto;
     border-radius: 0.5rem;
     object-fit: cover;
     display: block;
-    margin: 0 auto 0.5rem; /* centraliza e dá espaçamento */
+    margin: 0 auto 0.5rem;
   }
 
   .highlight__headline {
-    position: static; /* tira a sobreposição */
+    position: static;
     width: 100%;
-    background: none; /* sem fundo escuro */
+    background: none;
     color: #000;
     font-size: 1rem;
     font-weight: bold;
@@ -145,7 +142,6 @@
     color: #999;
   }
 
-  /* Carousel e grid empilados */
   .main__highlights-layout {
     display: flex;
     flex-direction: column;

@@ -17,7 +17,6 @@
   transform: scale(1.03);
 }
 
-/* container da imagem */
 .highlight__image-container {
   position: relative;
   width: 100%;
@@ -30,15 +29,14 @@
 .highlight__image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* deixa a imagem bem cortada */
+  object-fit: cover;
   border-radius: 0.5rem;
   display: block;
 }
 
-/* headline sobreposta */
 .highlight__headline {
   position: absolute;
-  bottom: 0; /* fica colado na parte de baixo da imagem */
+  bottom: 0;
   left: 0;
   width: 99%;
   background: rgba(0,0,0,0.5);
@@ -51,7 +49,6 @@
   text-align: center;
 }
 
-/* data no rodapé */
 .highlight__date {
   font-size: 0.9rem;
   color: #999;
@@ -70,7 +67,7 @@
 .main__carousel {
   position: relative;
   overflow: hidden;
-  width: 32rem; /* fixo pro carousel */
+  width: 32rem;
   flex-shrink: 0;
 }
 
@@ -93,19 +90,19 @@
   .highlight {
     display: flex;
     flex-direction: column;
-    align-items: center;  /* centraliza horizontalmente */
-    width: 90%;           /* ocupa 90% da tela */
-    max-width: 18rem;     /* não ficar gigante em tablets */
-    height: auto;         /* altura ajusta ao conteúdo */
-    padding: 0.5rem;      /* padding interno */
-    margin: 0.5rem auto;  /* centraliza e dá espaçamento vertical */
+    align-items: center;
+    width: 90%;
+    max-width: 18rem;
+    height: auto;
+    padding: 0.5rem;
+    margin: 0.5rem auto;
     box-sizing: border-box;
   }
 
   .highlight__image-container {
     width: 100%;
     height: 0;
-    padding-bottom: 100%; /* mantém proporção quadrada */
+    padding-bottom: 100%;
     position: relative;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -136,7 +133,7 @@
   }
 
   .highlight__summary {
-    display: none; /* resumo escondido no mobile */
+    display: none;
   }
 
   .highlight__subtitle {

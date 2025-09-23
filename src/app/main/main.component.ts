@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
 import { AddsComponent } from "../components/adds/adds.component"
 import { Noticia } from '../../models/noticia.model'
 import { SpinnerComponent } from "../components/spinner/spinner.component"
-import { ThumbnailDestaqueSmallComponent } from "../components/thumbnail-destaque-small/thumbnail-destaque-small.component";
+import { ThumbnailDestaqueSmallComponent } from "../components/thumbnail-destaque-small/thumbnail-destaque-small.component"
 
 @Component({
   selector: 'app-main',
@@ -39,7 +39,6 @@ export class MainComponent implements OnInit {
 
   @ViewChild('highlightScroll', { static: true }) highlightScroll!: ElementRef
   indicatorPosition = 0
-  firstHighlight: Noticia = new Noticia
 
   constructor(private router: Router, private noticiaService: NoticiaService) { }
 
@@ -58,8 +57,8 @@ export class MainComponent implements OnInit {
             .filter((news) => news.type === 'COMMON')
             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-          this.latestCommonNews = this.commonNews.slice(0, 6);
-          this.commonNews = this.commonNews.slice(6, this.commonNews.length - 1);
+          this.latestCommonNews = this.commonNews.slice(0, 6)
+          this.commonNews = this.commonNews.slice(6, this.commonNews.length - 1)
         }
       },
       error: (err) => {
