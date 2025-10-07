@@ -12,12 +12,23 @@
             *ngFor="let news of highlights"
             [noticia]="news"
             class="main__carousel-item"
-            (click)="goToNoticia(news.id)">
+            (click)="goToNoticia(news.id)"
+          >
           </app-thumbnail-destaque>
         </div>
 
-        <button class="main__carousel-btn main__carousel-btn--prev" (click)="prevSlide()">&#10094;</button>
-        <button class="main__carousel-btn main__carousel-btn--next" (click)="nextSlide()">&#10095;</button>
+        <button
+          class="main__carousel-btn main__carousel-btn--prev"
+          (click)="prevSlide()"
+        >
+          &#10094;
+        </button>
+        <button
+          class="main__carousel-btn main__carousel-btn--next"
+          (click)="nextSlide()"
+        >
+          &#10095;
+        </button>
       </div>
 
       <div class="main__grid-side" aria-label="grid-destaques">
@@ -25,7 +36,8 @@
           *ngFor="let news of latestCommonNews"
           [noticia]="news"
           class="main__grid-card"
-          (click)="goToNoticia(news.id)">
+          (click)="goToNoticia(news.id)"
+        >
         </app-thumbnail-destaque-small>
       </div>
     </div>
@@ -36,13 +48,21 @@
   </div>
 
   <div class="main__section-title-container">
-      <h2 class="main__section-title main__section-title-common">Últimas Notícias</h2>
-    </div>
+    <h2 class="main__section-title main__section-title-common">
+      Últimas Notícias
+    </h2>
+  </div>
   <section class="main__common-news">
     <div class="main__news-grid">
       <a *ngFor="let news of commonNews" (click)="goToNoticia(news.id)">
         <app-thumbnail-noticia [noticia]="news"></app-thumbnail-noticia>
       </a>
+    </div>
+
+    <div class="main__load-more-container">
+      <button class="main__load-more" (click)="loadMore()">
+        <span class="material-icons">more_horiz</span>
+      </button>
     </div>
   </section>
 </main>

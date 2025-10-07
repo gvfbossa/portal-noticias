@@ -87,7 +87,7 @@ export class NoticiaCategoriaComponent implements OnInit {
   }
 
   filtrarNoticias(): void {
-    this.noticiaService.getNoticiasMock().subscribe(todasNoticias => {
+    this.noticiaService.getNoticias().subscribe(todasNoticias => {
       this.noticiasFiltradas = todasNoticias.content.filter((noticia: { category: string }) => {
         return noticia.category === this.categoria.toUpperCase()
       })

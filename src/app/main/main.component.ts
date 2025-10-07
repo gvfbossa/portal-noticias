@@ -37,39 +37,61 @@ export class MainComponent implements OnInit {
 
   isLoading: boolean = false
 
+  currentPage = 0
+  totalPages = 0
+  hasMoreNews = true
+
   @ViewChild('highlightScroll', { static: true }) highlightScroll!: ElementRef
   indicatorPosition = 0
 
   constructor(private router: Router, private noticiaService: NoticiaService) { }
 
   ngOnInit(): void {
+    this.loadNoticias()
+  }
+
+  loadNoticias(page: number = 0): void {
     this.isLoading = true
-    this.noticiaService.getNoticiasMock().subscribe({
+    this.noticiaService.getNoticias(page).subscribe({
       next: (response) => {
         const noticias = response.content
 
         if (Array.isArray(noticias)) {
-          this.highlights = noticias
-            .filter((news) => news.type === 'HIGHLIGHT')
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          if (page === 0) {
+            this.highlights = noticias
+              .filter(n => n.type === 'HIGHLIGHT')
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-          this.commonNews = noticias
-            .filter((news) => news.type === 'COMMON')
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+            const commons = noticias
+              .filter(n => n.type === 'COMMON')
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-          this.latestCommonNews = this.commonNews.slice(0, 6)
-          this.commonNews = this.commonNews.slice(6, this.commonNews.length - 1)
+            this.latestCommonNews = commons.slice(0, 6)
+            this.commonNews = commons.slice(6)
+          } else {
+            const commons = noticias.filter(n => n.type === 'COMMON')
+            this.commonNews.push(...commons)
+          }
+
+          this.totalPages = response.totalPages
+          this.currentPage = page
+          this.hasMoreNews = this.currentPage + 1 < this.totalPages
         }
+
+        this.isLoading = false
       },
       error: (err) => {
         console.error('Erro ao buscar notícias:', err)
-      },
+        this.isLoading = false
+      }
     })
-    setTimeout(() => {
-      this.isLoading = false
-    }, 500)
-
     this.startAutoSlide()
+  }
+
+  loadMore(): void {
+    if (this.hasMoreNews) {
+      this.loadNoticias(this.currentPage + 1)
+    }
   }
 
   nextSlide() {
@@ -108,7 +130,7 @@ export class MainComponent implements OnInit {
     if (noticia) {
       this.router.navigate(['/noticia', id], { state: { noticia } })
     }
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   }
 
 }

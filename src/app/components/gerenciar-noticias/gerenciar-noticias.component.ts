@@ -60,71 +60,35 @@ export class GerenciarNoticiasComponent implements OnInit {
       this.router.navigate(['/login'])
       return
     }
+    this.http.get(`${this.apiBaseUrl}/api/categorias`).subscribe(
+      (response: any) => {
+        this.categorias = response
+      },
+      (error: any) => {
+        this.toastService.show('Não foi possível carregar as categorias.', 'error')
+      }
+    )
 
-    if (this.portfolio) {
-      of([
-        { name: 'Geral', value: 'GERAL' },
-        { name: 'Política', value: 'POLITICA' },
-        { name: 'Policial', value: 'POLICIAL' },
-        { name: 'Esportes', value: 'ESPORTES' },
-        { name: 'Cultura', value: 'CULTURA' },
-        { name: 'Emprego', value: 'EMPREGO' },
-        { name: 'Achados e Perdidos', value: 'ACHADOS_PERDIDOS' },
-        { name: 'Produtos e Serviços', value: 'ANUNCIOS' },
-        { name: 'Reclamações', value: 'RECLAMACOES' }
-      ])
-        .pipe(delay(300))
-        .subscribe(res => this.categorias = res)
+    this.http.get(`${this.apiBaseUrl}/api/tipos`).subscribe(
+      (response: any) => {
+        this.types = response
+      },
+      (error: any) => {
+        this.toastService.show('Não foi possível carregar os tipos.', 'error')
+      }
+    )
 
-      of([
-        { name: 'Destaque', value: 'HIGHLIGHT' },
-        { name: 'Comum', value: 'COMMON' }
-      ])
-        .pipe(delay(300))
-        .subscribe(res => this.types = res)
+    this.loadNoticias()
+    this.loadAnuncios()
 
-      this.isLoading = true
-      this.loadNoticias()
-      this.loadAnuncios()
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
+    const headers = new HttpHeaders({
+      Authorization: authHeader
+    })
 
-      of(['MAIN_TOP', 'MAIN_MIDDLE', 'NEWS_RIGHT'])
-        .pipe(delay(300))
-        .subscribe(res => this.adPositions = res)
-    }
-    else {
-      this.http.get(`${this.apiBaseUrl}/api/categorias`).subscribe(
-        (response: any) => {
-          this.categorias = response
-        },
-        (error: any) => {
-          this.toastService.show('Não foi possível carregar as categorias.', 'error')
-        }
-      )
-
-      this.http.get(`${this.apiBaseUrl}/api/tipos`).subscribe(
-        (response: any) => {
-          this.types = response
-        },
-        (error: any) => {
-          this.toastService.show('Não foi possível carregar os tipos.', 'error')
-        }
-      )
-
-      this.loadNoticias()
-      this.loadAnuncios()
-
-      const headers = new HttpHeaders({
-        Authorization: authHeader
-      })
-
-      this.anuncioService.getAdPositions(headers).subscribe(
-        (positions) => this.adPositions = positions,
-        (error) => console.error('Erro ao carregar posições de anúncio', error)
-      )
-    }
+    this.anuncioService.getAdPositions(headers).subscribe(
+      (positions) => this.adPositions = positions,
+      (error) => console.error('Erro ao carregar posições de anúncio', error)
+    )
   }
 
   async onDeleteAnuncio(id: number) {
@@ -212,7 +176,7 @@ export class GerenciarNoticiasComponent implements OnInit {
 
   loadNoticias(page: number = 0, size: number = 10): void {
     if (this.portfolio) {
-      this.noticiaService.getNoticiasMock().pipe(delay(300)).subscribe(res => {
+      this.noticiaService.getNoticias().pipe(delay(300)).subscribe(res => {
         this.noticias = res.content
       })
       return

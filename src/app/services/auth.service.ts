@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { delay, Observable, of, tap, throwError } from 'rxjs'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable, tap } from 'rxjs'
 import { environment } from '../../environments/environment'
 
 @Injectable({
@@ -8,39 +8,29 @@ import { environment } from '../../environments/environment'
 })
 export class AuthService {
   private apiUrl = `${environment.apiBaseUrl}/login`
-  private authHeader: string | null = null
-  portfolio = true
 
   constructor(private http: HttpClient) { }
 
   login(credentials: { username: string; password: string }): Observable<any> {
-    const encodedPassword = btoa(credentials.password)
+    const encodedPassword = btoa(credentials.password);
 
-    if (this.portfolio) {
-      if (credentials.username === 'admin' && encodedPassword === btoa('admin123')) {
-        const mockResponse = { token: 'mock-jwt-token-123' }
-
-        return of(mockResponse).pipe(
-          delay(500),
-          tap((response: { token: string }) => {
-            localStorage.setItem('authHeader', response.token)
-            console.log('Mock Token:', response.token)
-          })
-        )
-      } else {
-        return throwError(() => new Error('Credenciais inválidas'))
-      }
-    } else {
-      return this.http.post<{ token: string }>(this.apiUrl, {
-        username: credentials.username,
-        password: encodedPassword,
-      }).pipe(
-        tap((response: { token: string }) => {
-          localStorage.setItem('authHeader', response.token)
-          console.log(response.token)
+    return this.http.post(this.apiUrl, {
+      username: credentials.username,
+      password: encodedPassword,
+      type: 'Usuario'
+    }, { observe: 'response' })
+      .pipe(
+        tap(resp => {
+          const token = resp.headers.get('Authorization')
+          console.log(resp.headers)
+          if (token) {
+            localStorage.setItem('authHeader', token);
+            console.log('JWT Token:', token);
+          } else {
+            throw new Error('Token não retornado');
+          }
         })
-      )
-    }
+      );
   }
 
   logout(): void {
@@ -53,5 +43,10 @@ export class AuthService {
 
   getAuthHeader(): string | null {
     return localStorage.getItem('authHeader')
+  }
+
+  getAuthHeaders(): { headers: HttpHeaders } {
+    const token = this.getAuthHeader()
+    return { headers: new HttpHeaders({ Authorization: token ?? '' }) }
   }
 }

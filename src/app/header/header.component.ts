@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.updateDateTime()
 
-    this.noticiaService.getNoticiasMock().subscribe(noticias => {
+    this.noticiaService.getNoticias().subscribe(noticias => {
 
       this.noticias = noticias.content
     })

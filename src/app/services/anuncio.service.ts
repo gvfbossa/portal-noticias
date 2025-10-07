@@ -9,8 +9,7 @@ import { environment } from '../../environments/environment'
 })
 export class AnuncioService {
 
-  private baseApi = `${environment.apiBaseUrl}`
-  private apiUrl = '/api/anuncios'
+  private readonly apiUrl = `${environment.apiBaseUrl}/api/anuncios`
   portfolio = true
 
   constructor(private http: HttpClient) { }
@@ -20,9 +19,7 @@ export class AnuncioService {
   }
 
   getAdPositions(headers?: HttpHeaders): Observable<AdPosition[]> {
-    return this.http.get<AdPosition[]>(`${this.baseApi}${this.apiUrl}/add-positions`, {
-      headers: headers
-    })
+    return this.http.get<AdPosition[]>(`${this.apiUrl}/add-positions`, { headers })
   }
 
   criar(anuncio: {
@@ -45,24 +42,15 @@ export class AnuncioService {
       Authorization: authHeader ?? ''
     })
 
-    return this.http.post(`${this.baseApi}${this.apiUrl}/cadastro`, formData, { headers })
+    return this.http.post(`${this.apiUrl}/cadastro`, formData, { headers })
   }
 
   getAll(headers?: HttpHeaders): Observable<Anuncio[]> {
-    if (this.portfolio) {
-      return of<Anuncio[]>([
-        { id: 1, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/addBannerTop.png', position: 'MAIN_TOP', dataExpiracao: '2030-12-31' },
-        { id: 2, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/addBannerMiddle.png', position: 'MAIN_MIDDLE', dataExpiracao: '2030-12-31' },
-        { id: 3, url: 'https://www.bossawebsolutions.com.br', imagem: 'assets/images/anuncio_bws_1.jpeg', position: 'NEWS_RIGHT', dataExpiracao: '2030-12-31' }
-      ] as const).pipe(delay(300))
-    }
-
-    return this.http.get<Anuncio[]>(`${this.baseApi}${this.apiUrl}`, { headers })
+    return this.http.get<Anuncio[]>(`${this.apiUrl}`, { headers })
   }
 
-
   deletar(id: number, headers?: HttpHeaders): Observable<void> {
-    return this.http.delete<void>(`${this.baseApi}${this.apiUrl}/remove/${id}`, { headers })
+    return this.http.delete<void>(`${this.apiUrl}/remove/${id}`, { headers })
   }
 
 }
