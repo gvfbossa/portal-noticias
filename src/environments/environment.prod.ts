@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.portfolio.portal-noticias.bossawebsolutions.com.br/'
+  apiBaseUrl: 'https://api.portfolio.portal-noticias.bossawebsolutions.com.br'
 };
